@@ -1,0 +1,64 @@
+<app-top-bar></app-top-bar>
+
+<div class="titleRegister">
+    <h1>Qual sua Ocorrência?</h1>
+</div>
+
+<div class="register">
+   <div class="client">
+    <form enctype="multipart/form-data">
+
+        <div class="inputsRegister">
+            <input type="text" id="nome" [value]="user.nome" disabled/>
+        </div>
+
+        <div class="inputsRegister">
+            <input type="text" id="edv" [value]="user.edv" disabled/>
+        </div>
+
+        <div class="inputsRegister">
+            <select id="ocorrencia" class="form-select form-select" aria-label="Default select example" (blur)="pegaValor()">
+                <option selected>Selecione o tipo de ocorrencia</option>
+                <option *ngFor="let ocorrencia of ocorrencias" value="{{ocorrencia.id}}">{{ocorrencia.nome}}</option>
+              </select>
+        </div>
+
+        <div class="inputsRegister">
+            <div class="inputsRegisterData">
+                <input *ngIf="gamb[0] != 3" type="text" id="dateE" placeholder="Data Entrada" onfocus="(this.type='date')"/>
+                <input *ngIf="gamb[0] == 3"  disabled type="text" id="dateE" placeholder="Data Entrada" onfocus="(this.type='date')"/>
+            </div>
+
+            <div class="inputsRegisterHora">
+                <input *ngIf="gamb[0] == 1 || gamb[0] == 3 "  disabled type="text" id="horaE" value="00:00" placeholder="Hora Entrada" onfocus="(this.type='time')"/>
+                <input *ngIf="gamb[0] != 1 && gamb[0] != 3" type="text" id="horaE" placeholder="Hora Entrada" onfocus="(this.type='time')"/>
+            </div>
+        </div>
+
+        <div class="inputsRegisterSaida">
+            <div class="inputsRegisterData">
+                <input *ngIf="gamb[0] != 2" type="text" id="dateS" placeholder="Data Saida" onfocus="(this.type='date')"/>
+                <input *ngIf="gamb[0] == 2" type="text" id="dateS" disabled   placeholder="Data Saida" onfocus="(this.type='date')"/>
+            </div>
+
+            <div class="inputsRegisterHora">
+                <input *ngIf="gamb[0] == 1 || gamb[0] == 2"  disabled type="text" id="horaS" value="00:00" placeholder="Hora Saida" onfocus="(this.type='time')"/>
+                <input *ngIf="gamb[0] != 1 && gamb[0] != 2" type="text" id="horaS" placeholder="Hora Saida" onfocus="(this.type='time')"/>
+            </div>
+        </div>
+ 
+         <div class="inputsRegister">
+             <input type="text" id="descricao" placeholder="Descrição" />
+         </div>
+
+         <div class="mb-3 inputsRegister">
+            <input class="form-control" type="file" name="file_name" (blur)="lala()" accept="image/*" id="formFile">
+          </div>
+ 
+    </form>
+   </div>
+
+    <div class="btnss">
+        <div  class="btnAddress2"><button class="btn" type="button" (click)="register()">Salvar</button></div>
+    </div>
+</div>

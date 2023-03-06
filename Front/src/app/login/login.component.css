@@ -1,0 +1,189 @@
+
+
+/* .login{
+    text-align: center;
+
+}
+.loginInput{
+    size: 200px;
+    margin-bottom: 1%;
+}
+.passwordInput{
+    margin-bottom: 2%;
+}
+.sub{
+    margin-top: 2%;
+    margin-bottom: 0;
+}
+.link{
+    color: gray;
+    cursor: pointer;
+}
+.button, button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 2px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+  }
+  
+  .button:hover, button:hover {
+    opacity: 0.8;
+    font-weight: normal;
+  }
+  
+  .button:disabled, button:disabled {
+    opacity: 0.5;
+    cursor: auto;
+  }
+
+  
+  .fancy-button {
+    background-color: white;
+    color: #1976d2;
+  }
+  
+  .fancy-button i.material-icons {
+    color: #1976d2;
+    padding-right: 4px;
+  }
+*/
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+/* GENERAL STYLES */
+body,
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Space Grotesk", sans-serif;
+}
+body {
+  background: url("../../assets/Bosch-Supergraphic.svg");
+  background: linear-gradient(to right, #953636, #970000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.back{
+  background: #970000;
+  background: linear-gradient(to right, #953636, #970000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* LOGIN FORM STYLES */
+.login-box {
+  background-color: #fff;
+  padding: 40px;
+  min-width: 500px;
+  max-width: 700px;
+  border-radius: 7px;
+  border-left: 7px solid #fc3939;
+}
+@media screen and (max-width: 500px) {
+  .login-box{
+    min-width: 250px;
+    border-left:none;
+  }
+  .login-box .auth-action {
+    display: block;
+  }
+  .login-box .cai{
+    display: block;
+  }
+  .login-box .auth-action a {
+    display: block;
+  }
+}
+
+.login-box .title {
+  font-size: 18px;
+  text-align: center;
+  padding: 15px 0;
+}
+.login-box .input-box {
+  position: relative;
+  margin-bottom: 15px;
+}
+.login-box .input-box .input {
+  border: none;
+  border-bottom: 1px solid #efefef;
+  background-color: #ececec;
+  outline: none;
+  width: 100%;
+  padding: 14px 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 16px;
+  box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+}
+.login-box .input-box label {
+  position: absolute;
+  top: 20px;
+  left: 5px;
+  padding: 14px 5px;
+  display: block;
+  pointer-events: none;
+  transition: 0.2s;
+}
+.login-box .input-box input:focus ~ label,
+.login-box .input-box input:valid ~ label {
+  top: -20px;
+  left: 2px;
+  font-size: 14px;
+}
+.login-box .input-box .view-pass {
+  width: 45px;
+  position: absolute;
+  top: 27px;
+  right: 2px;
+  cursor: pointer;
+  background-color: rgba(236, 236, 236, 0.8);
+  padding: 7px 12px;
+  backdrop-filter: blur(3px);
+  display: none;
+}
+.login-box button[type="submit"] {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  border-left: 2px solid #f40303;
+  padding: 15px 0;
+  font-size: 16px;
+  color: #fff;
+  background: #fc3939;
+  background: linear-gradient(to right, #ff2929, #fc3939);
+  margin-top: 30px;
+  cursor:pointer;
+}
+.login-box .auth-action {
+  display: flex;
+  justify-content: center-;
+}
+.login-box .auth-action a {
+  display: inline-block;
+  padding: 15px 0;
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+}
+.login-box .cai {
+  display: flex;
+  justify-content: flex-end;
+}
+.login-box .cai a {
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+}
