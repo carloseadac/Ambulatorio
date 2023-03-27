@@ -9,6 +9,8 @@ public class Context : DbContext
     public DbSet<Ocorrencia> Ocorrencia { get; set; }
     public DbSet<Ocorrencias> Ocorrencias { get; set; }
     public DbSet<User> User { get; set; }
+    public DbSet<Medico> Medico{ get; set; }
+    public DbSet<Agenda> Agenda { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -60,7 +62,24 @@ public class Context : DbContext
             entity.Property(a=>a.Senha).IsRequired();
 
         });
+        modelBuilder.Entity<Medico>(entity => {
 
+            entity.HasKey(a => a.Id);
+            entity.Property(a => a.Nome).IsRequired();
+            entity.Property(a => a.Area).IsRequired();
+            entity.Property(a => a.Edv).IsRequired();
+            entity.Property(a => a.DataNasc).IsRequired();
+            entity.Property(a => a.Email).IsRequired();
+            entity.Property(a => a.Senha).IsRequired();
+
+        });
+        modelBuilder.Entity<Agenda>(entity => {
+            entity.HasKey(a => a.Id);
+            entity.Property(a => a.StartDate).IsRequired();
+            entity.Property(a => a.EndDate).IsRequired();
+            entity.HasOne(a => a.Medico);
+            entity.HasOne(a => a.User);
+        });
 
     }
 }

@@ -86,3 +86,15 @@ C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\
 C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\refint\DTO.dll
 C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.pdb
 C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\ref\DTO.dll
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\bin\Debug\net6.0\DTO.deps.json
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\bin\Debug\net6.0\DTO.dll
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\bin\Debug\net6.0\DTO.pdb
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.csproj.AssemblyReference.cache
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfoInputs.cache
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfo.cs
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.csproj.CoreCompileInputs.cache
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.dll
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\refint\DTO.dll
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.pdb
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\ref\DTO.dll

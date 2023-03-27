@@ -342,3 +342,13 @@ C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\
 C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\Controller\obj\Debug\net6.0\Controller.pdb
 C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\Controller\obj\Debug\net6.0\Controller.genruntimeconfig.cache
 C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\Controller\obj\Debug\net6.0\ref\Controller.dll
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\Controller\obj\Debug\net6.0\Controller.csproj.AssemblyReference.cache
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\Controller\obj\Debug\net6.0\Controller.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\Controller\obj\Debug\net6.0\Controller.AssemblyInfoInputs.cache
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\Controller\obj\Debug\net6.0\Controller.AssemblyInfo.cs
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\Controller\obj\Debug\net6.0\Controller.csproj.CoreCompileInputs.cache
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\Controller\obj\Debug\net6.0\Controller.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\Controller\obj\Debug\net6.0\Controller.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\Controller\obj\Debug\net6.0\Controller.dll
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\Controller\obj\Debug\net6.0\refint\Controller.dll
+C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\Controller\obj\Debug\net6.0\Controller.pdb
