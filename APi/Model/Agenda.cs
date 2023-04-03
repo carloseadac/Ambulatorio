@@ -10,6 +10,7 @@ public class Agenda
     public DateTime EndDate { get; set; }
     public Medico Medico { get; set; }
     public User User { get; set; }
+    public bool Aprovado { get; set; }
 
 
     public int save()
@@ -19,9 +20,10 @@ public class Agenda
             var obj = new Model.Agenda
             {
                 StartDate = this.StartDate,
-                EndDate = this.StartDate.AddMinutes(30), 
+                EndDate = this.StartDate.AddMinutes(30),
                 Medico = this.Medico,
-                User = this.User
+                User = this.User,
+                Aprovado = false
             };
             context.Agenda.Add(obj);
             context.SaveChanges();
@@ -45,11 +47,11 @@ public class Agenda
         }
     }
 
-    public static List<object> findAll()
+    public static List<object> findAll(int id)
     {
         using (var context = new Context())
         {
-            var agenda = context.Ocorrencias;
+            var agenda = context.Agenda.Where(c => c.Medico.Id == id);
 
             List<object> agendas = new List<object>();
 

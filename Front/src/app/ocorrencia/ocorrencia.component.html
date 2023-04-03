@@ -22,6 +22,12 @@
                 <option *ngFor="let ocorrencia of ocorrencias" value="{{ocorrencia.id}}">{{ocorrencia.nome}}</option>
               </select>
         </div>
+        <div class="inputsRegister" *ngIf="gamb[0]==5">
+            <select id="medico" class="form-select form-select" aria-label="Default select example" (blur)="pegaValor()">
+                <option selected>Selecione o tipo de ocorrencia</option>
+                <option *ngFor="let medico of medicos" value="{{medico.id}}">{{medico.nome}} - {{medico.area}}</option>
+              </select>
+        </div>
 
         <div class="inputsRegister">
             <div class="inputsRegisterData">

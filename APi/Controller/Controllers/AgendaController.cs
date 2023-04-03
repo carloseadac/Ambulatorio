@@ -51,7 +51,8 @@ public class AgendaController : ControllerBase
 
     public object getAllInformations()
     {
-        var agendas = Model.Agenda.findAll();
+        var id = Lib.GetIdFromRequest(Request.Headers["Authorization"].ToString());
+        var agendas = Model.Agenda.findAll(id);
         return agendas;
     }
 

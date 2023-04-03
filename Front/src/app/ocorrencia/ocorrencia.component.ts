@@ -21,6 +21,7 @@ declare global {
 export class OcorrenciaComponent implements OnInit {
 
   ocorrencias : [Ocorrencias] | undefined;
+  medicos : [User] | undefined;
   user : User
   userId : number;
   documento : any = ""
@@ -67,11 +68,27 @@ export class OcorrenciaComponent implements OnInit {
       },
       data : data
     };
+    var config5 = {
+      method: 'get',
+      url: 'http://localhost:5051/Medico/getAll',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
 
     axios(config)
     .then(function (response:any) {
       console.log(JSON.stringify(response.data));
       self.ocorrencias = response.data;
+    })
+    .catch(function (error:any) {
+      console.log(error);
+    });
+    axios(config5)
+    .then(function (response:any) {
+      console.log(JSON.stringify(response.data));
+      self.medicos = response.data;
     })
     .catch(function (error:any) {
       console.log(error);
