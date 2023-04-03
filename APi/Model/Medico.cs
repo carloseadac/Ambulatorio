@@ -101,7 +101,7 @@ public class Medico
 
             if (userFind != null)
             {
-
+                Console.WriteLine(userFind.Id);
                 return userFind;
             }
 

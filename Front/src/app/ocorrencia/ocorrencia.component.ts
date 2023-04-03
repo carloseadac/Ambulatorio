@@ -24,6 +24,8 @@ export class OcorrenciaComponent implements OnInit {
   user : User
   userId : number;
   documento : any = ""
+  newDataSaida: Date = new Date();
+  number : number = 0;
 
   gamb : Array<number> = []
 
@@ -186,31 +188,69 @@ export class OcorrenciaComponent implements OnInit {
     else if(this.gamb[0] == 3){
       dataEntrada = document.getElementById("dateS") as HTMLInputElement;
     }
+    else if(this.gamb[0] == 5){
+      dataEntrada = document.getElementById("dateE") as HTMLInputElement;
+    }
     let horaEntrada= document.getElementById("horaE") as HTMLInputElement;
     let horaSaida= document.getElementById("horaS") as HTMLInputElement;
     let descricao = document.getElementById("descricao") as HTMLInputElement;
     let comprovante=this.userId*datinha
-    var data = JSON.stringify({
-      "descricao": descricao?.value,
-      "dataEntrada": dataEntrada?.value + "T" + horaEntrada?.value + ":00.000Z",
-      "dataSaida": dataSaida?.value + "T" + horaSaida?.value + ":00.000Z",
-      "documento": localStorage.getItem("imagem"),
-      "comprovante": comprovante,
-      "ocorrencias":{
-        "id": option?.value,
-        "nome": ""
-      },
-      "usuario":{
-        "id": this.userId,
-        "nome": "",
-        "edv": "",
-        "area": "",
-        "dataNasc": dataSaida?.value + "T" + horaSaida?.value + ":00.000Z",
-        "email": "",
-        "senha": ""
-      } 
-      
-    })
+    if(this.gamb[0]==5){
+      let numbers = dataEntrada.value.split("-");
+      let hours= horaEntrada.value.split(":");
+      console.log(numbers);
+      this.newDataSaida.setDate(parseInt(numbers[2]));
+      this.newDataSaida.setFullYear(parseInt(numbers[0]));
+      this.newDataSaida.setMonth(parseInt(numbers[1])-1)
+      this.newDataSaida.setHours(parseInt(hours[0]))
+      this.newDataSaida.setMinutes(parseInt(hours[1])+30)
+      console.log(this.newDataSaida)
+      var data = JSON.stringify({
+        "descricao": descricao?.value,
+        "dataEntrada": dataEntrada?.value + "T" + horaEntrada?.value + ":00.000Z",
+        "dataSaida": this.newDataSaida,
+        "documento": ".",
+        "comprovante": comprovante,
+        "ocorrencias":{
+          "id": option?.value,
+          "nome": ""
+        },
+        "usuario":{
+          "id": this.userId,
+          "nome": "",
+          "edv": "",
+          "area": "",
+          "dataNasc": this.newDataSaida,
+          "email": "",
+          "senha": ""
+        } 
+        
+      })
+    }
+    else{
+      var data = JSON.stringify({
+        "descricao": descricao?.value,
+        "dataEntrada": dataEntrada?.value + "T" + horaEntrada?.value + ":00.000Z",
+        "dataSaida": dataSaida?.value + "T" + horaSaida?.value + ":00.000Z",
+        "documento": localStorage.getItem("imagem"),
+        "comprovante": comprovante,
+        "ocorrencias":{
+          "id": option?.value,
+          "nome": ""
+        },
+        "usuario":{
+          "id": this.userId,
+          "nome": "",
+          "edv": "",
+          "area": "",
+          "dataNasc": dataSaida?.value + "T" + horaSaida?.value + ":00.000Z",
+          "email": "",
+          "senha": ""
+        } 
+        
+      })
+    }
+    
 
     var config = {
       method: 'post',
@@ -221,6 +261,24 @@ export class OcorrenciaComponent implements OnInit {
       data : data
     };
     let self4 = this;
+    axios(config)
+    .then(function (response) {
+      alert("Registrado com sucesso!");
+      
+    })
+    .catch(function (error) {
+      alert("Erro Genérico!");
+      console.log(error);
+    });
+
+    var config1 = {
+      method: 'post',
+      url: 'http://localhost:5051/Agenda/register',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
     axios(config)
     .then(function (response) {
       alert("Registrado com sucesso!");
@@ -278,6 +336,9 @@ export class OcorrenciaComponent implements OnInit {
     }
     else if(option.text == "Ausência"){
       this.gamb[0] = 4;
+    }
+    else if(option.text == "Consulta"){
+      this.gamb[0] = 5;
     }
     else{
       this.gamb[0] = 0;

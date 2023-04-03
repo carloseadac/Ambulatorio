@@ -25,17 +25,19 @@
 
         <div class="inputsRegister">
             <div class="inputsRegisterData">
-                <input *ngIf="gamb[0] != 3" type="text" id="dateE" placeholder="Data Entrada" onfocus="(this.type='date')"/>
+                <input *ngIf="gamb[0] != 3 && gamb[0] != 5" type="text" id="dateE" placeholder="Data Entrada" onfocus="(this.type='date')"/>
+                <input *ngIf="gamb[0] == 5" type="text" id="dateE" placeholder="Data Consulta" onfocus="(this.type='date')"/>
                 <input *ngIf="gamb[0] == 3"  disabled type="text" id="dateE" placeholder="Data Entrada" onfocus="(this.type='date')"/>
             </div>
 
             <div class="inputsRegisterHora">
                 <input *ngIf="gamb[0] == 1 || gamb[0] == 3 "  disabled type="text" id="horaE" value="00:00" placeholder="Hora Entrada" onfocus="(this.type='time')"/>
-                <input *ngIf="gamb[0] != 1 && gamb[0] != 3" type="text" id="horaE" placeholder="Hora Entrada" onfocus="(this.type='time')"/>
+                <input *ngIf="gamb[0] != 1 && gamb[0] != 3 && gamb[0] != 5 " type="text" id="horaE" placeholder="Hora Entrada" onfocus="(this.type='time')"/>
+                <input *ngIf="gamb[0] == 5" type="text" id="horaE" placeholder="Hora Consulta" onfocus="(this.type='time')"/>
             </div>
         </div>
 
-        <div class="inputsRegisterSaida">
+        <div class="inputsRegisterSaida" *ngIf="this.gamb[0] !=5">
             <div class="inputsRegisterData">
                 <input *ngIf="gamb[0] != 2" type="text" id="dateS" placeholder="Data Saida" onfocus="(this.type='date')"/>
                 <input *ngIf="gamb[0] == 2" type="text" id="dateS" disabled   placeholder="Data Saida" onfocus="(this.type='date')"/>
@@ -52,7 +54,7 @@
          </div>
 
          <div class="mb-3 inputsRegister">
-            <input class="form-control" type="file" name="file_name" (blur)="lala()" accept="image/*" id="formFile">
+            <input class="form-control" *ngIf="gamb[0] !=5" type="file" name="file_name" (blur)="lala()" accept="image/*" id="formFile">
           </div>
  
     </form>

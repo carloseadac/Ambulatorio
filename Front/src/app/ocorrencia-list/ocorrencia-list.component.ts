@@ -19,9 +19,19 @@ export class OcorrenciaListComponent implements OnInit{
   idPegado : number = 0;
   caminho : string | null = "";
   adm : User
+  medico : User
 
   constructor(private router: Router) { 
     this.adm = {
+      id : 0,
+      nome : "",
+      edv: "",
+      senha: "",
+      area: "",
+      email: "",
+      dataNasc: ""
+    }
+    this.medico = {
       id : 0,
       nome : "",
       edv: "",
@@ -34,12 +44,15 @@ export class OcorrenciaListComponent implements OnInit{
 
   ngOnInit(): void {
     let self = this;
-    // if(localStorage.getItem("authOwner") == null && localStorage.getItem("authToken") == null){
-    //   self.router.navigate(["/"])
-    // }
-    // if(localStorage.getItem("authToken") != null){
-    //   self.router.navigate(["/"])
-    // }
+    if(localStorage.getItem("authOwner") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authMedico") == null ){
+      self.router.navigate(["/"])
+    }
+    if(localStorage.getItem("authToken") != null){
+      self.router.navigate(["/"])
+    }
+    if(localStorage.getItem("authMedico") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authOwner") == null){
+      self.router.navigate(["/"])
+    }
 
     var data3 = JSON.stringify({
       
@@ -68,6 +81,31 @@ export class OcorrenciaListComponent implements OnInit{
       let dataCerta = day + month + year;
 
       self2.verificaPrimeiro(dataCerta, self2.adm.senha);
+
+    })
+    .catch(function (error:any) {
+      console.log(error);
+    });
+
+    var config4 = {
+      method: 'get',
+      url: 'http://localhost:5051/medico/getById',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('authMedico')
+      },
+      data : data3
+    };
+    axios(config4)
+    .then(function (response:any) {
+      console.log(JSON.stringify(response.data));
+      self2.medico = response.data;
+
+      let dataNova = self2.adm.dataNasc.substring(0,10).toString();
+      let day = dataNova.substring(8,10).toString();
+      let month = dataNova.substring(5,7).toString();
+      let year = dataNova.substring(0,4).toString();
+      let dataCerta = day + month + year;
 
     })
     .catch(function (error:any) {
@@ -138,7 +176,7 @@ export class OcorrenciaListComponent implements OnInit{
   todos(){
     var config = {
       method: 'get',
-      url: 'http://localhost:5051/Ocorrencia/getAll',
+      url: 'http://localhost:5051/Agenda/getAll',
       headers: {},
       data: '',
     };

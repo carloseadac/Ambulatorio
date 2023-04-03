@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    let login = document.getElementById("login") as HTMLInputElement;
+    let login = document.getElementById("EDV") as HTMLInputElement;
     let senha = document.getElementById("password") as HTMLInputElement;
 
     var data = JSON.stringify({
@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
     .then(function (response:any) {
       localStorage.setItem('authToken',response.data);
       localStorage.removeItem('authOwner');
+      localStorage.removeItem('authMedico');
       self.router.navigate(['Ocorrencias']);
     })
     .catch(function (error:any) {
@@ -70,13 +71,38 @@ export class LoginComponent implements OnInit {
     .then(function (response:any) {
       localStorage.setItem('authOwner',response.data);
       localStorage.removeItem('authToken');
+      localStorage.removeItem('authMedico');
       self.router.navigate(['ocorrenciaslist']);
     })
     .catch(function (error:any) {
       console.log(error);
       self.cont++;
       console.log(self.cont);
-      if(self.cont == 2){
+    });
+
+    var config3 = {
+      method: 'post',
+      url: 'http://localhost:5051/medico/login',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    axios(config3)
+    .then(function (response:any) {
+      localStorage.setItem('authMedico',response.data);
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('authOwner');
+      alert('oiiiii')
+      self.router.navigate(['ocorrenciaslist']);
+    })
+    .catch(function (error:any) {
+      console.log(data);
+      console.log(error);
+      self.cont++;
+      console.log(self.cont);
+      if(self.cont == 3){
         alert("Usuário ou senha incorretos!")
         self.cont = 0;
       }

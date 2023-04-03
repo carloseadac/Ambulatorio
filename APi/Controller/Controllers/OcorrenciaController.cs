@@ -39,7 +39,9 @@ public class OcorrenciaController : ControllerBase
 
     [HttpPost]
     [Route("register")]
-    public object OccurrenceRegister([FromBody] Ocorrencia ocorrencia){ 
+    public object OccurrenceRegister([FromBody] Ocorrencia ocorrencia){
+        ocorrencia.DataSaida=ocorrencia.DataSaida.AddMinutes(-180);
+        Console.WriteLine(ocorrencia.DataSaida);
         var Id = ocorrencia.save(ocorrencia.Usuario.Id, ocorrencia.Ocorrencias.Id);
         return new{
             Id = Id,
