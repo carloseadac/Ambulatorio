@@ -8,4 +8,5 @@ public class AgendaDTO
     public DateTime EndDate { get; set; }
     public UserDTO Medico { get; set; }
     public UserDTO Usuario { get; set; }
+    public bool IsApproved { get; set; }
 }

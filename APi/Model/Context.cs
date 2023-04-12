@@ -11,11 +11,11 @@ public class Context : DbContext
     public DbSet<User> User { get; set; }
     public DbSet<Medico> Medico{ get; set; }
     public DbSet<Agenda> Agenda { get; set; }
-
+    public DbSet<Shift> Shift { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
 
-        optionsBuilder.UseSqlServer("Data Source=" + Environment.MachineName + ";Initial Catalog=ProjetoOcorrencias; Integrated Security=True");
+        optionsBuilder.UseSqlServer("Data Source=SNCCH01LAB01F18\\SQLEXPRESS;Initial Catalog=ProjetoOcorrencias; Integrated Security=True");
 
     }
 
@@ -79,6 +79,19 @@ public class Context : DbContext
             entity.Property(a => a.EndDate).IsRequired();
             entity.HasOne(a => a.Medico);
             entity.HasOne(a => a.User);
+        });
+        modelBuilder.Entity<Shift>(entity => {
+            entity.HasKey(a => a.Id);
+            entity.Property(a => a.StartTime).IsRequired();
+            entity.Property(a => a.EndTime).IsRequired();
+            entity.Property(a => a.Monday).IsRequired();
+            entity.Property(a => a.Tuesday).IsRequired();
+            entity.Property(a => a.Wednesday).IsRequired();
+            entity.Property(a => a.Thursday).IsRequired();
+            entity.Property(a => a.Friday).IsRequired();
+            entity.Property(a => a.Saturday).IsRequired();
+            entity.Property(a => a.Sunday).IsRequired();
+            entity.HasOne(a => a.Medico);
         });
 
     }

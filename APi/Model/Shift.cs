@@ -3,29 +3,40 @@ using Microsoft.EntityFrameworkCore;
 using DTO;
 
 namespace Model;
-public class Agenda
+public class Shift
 {
     public int Id { get; set; }
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
+    public bool Monday { get; set; }
+    public bool Tuesday { get; set; }
+    public bool Wednesday { get; set; }
+    public bool Thursday { get; set; }
+    public bool Friday { get; set; }
+    public bool Saturday { get; set; }
+    public bool Sunday { get; set; }
+
     public Medico Medico { get; set; }
-    public User User { get; set; }
-    public bool Aprovado { get; set; }
 
 
     public int save()
     {
         using (var context = new Model.Context())
         {
-            var obj = new Model.Agenda
+            var obj = new Model.Shift
             {
-                StartDate = this.StartDate,
-                EndDate = this.StartDate.AddMinutes(30),
+                StartTime = this.StartTime,
+                EndTime = this.EndTime.AddMinutes(30),
                 Medico = this.Medico,
-                User = this.User,
-                Aprovado = false
+                Monday = this.Monday,
+                Tuesday = this.Tuesday,
+                Wednesday = this.Wednesday,
+                Thursday = this.Thursday,
+                Friday = this.Friday,
+                Saturday = this.Saturday,
+                Sunday = this.Sunday
             };
-            context.Agenda.Add(obj);
+            context.Shift.Add(obj);
             context.SaveChanges();
             Id = obj.Id;
         }
@@ -51,16 +62,16 @@ public class Agenda
     {
         using (var context = new Context())
         {
-            var agenda = context.Agenda.Where(c => c.Medico.Id == id);
+            var shift = context.Shift.Where(c => c.Medico.Id == id);
 
-            List<object> agendas = new List<object>();
+            List<object> shifts = new List<object>();
 
-            foreach (var item in agenda)
+            foreach (var item in shift)
             {
-                agendas.Add(item);
+                shifts.Add(item);
             }
 
-            return agendas;
+            return shifts;
         }
     }
 
@@ -86,10 +97,6 @@ public class Agenda
             if (agendaDTO.EndDate != null)
             {
                 agendas.EndDate = agendaDTO.EndDate;
-            }
-            if (agendaDTO.IsApproved != null)
-            {
-                agendas.Aprovado= agendaDTO.IsApproved;
             }
             context.SaveChanges();
         }
