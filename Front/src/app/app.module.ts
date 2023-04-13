@@ -15,6 +15,7 @@ import { DataTablesModule } from "angular-datatables";
 import { PrimeiroAcessoComponent } from './primeiro-acesso/primeiro-acesso.component';
 import { RegisterAdmComponent } from './register-adm/register-adm.component';
 import { AgendaListComponent } from './agenda-list/agenda-list.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AgendaListComponent } from './agenda-list/agenda-list.component';
     OcorrenciaListComponent,
     PrimeiroAcessoComponent,
     RegisterAdmComponent,
-    AgendaListComponent
+    AgendaListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { AgendaListComponent } from './agenda-list/agenda-list.component';
       {path: 'historico', component: OcorrenciaHistoricoComponent },
       {path: 'trocarSenha', component: PrimeiroAcessoComponent},
       {path: 'registerAdm', component: RegisterAdmComponent},
-      {path: 'agendalist', component: AgendaListComponent}
+      {path: 'agendalist', component: AgendaListComponent},
+      {path: 'home', component: HomeComponent}
     ])
   ],
   providers: [],

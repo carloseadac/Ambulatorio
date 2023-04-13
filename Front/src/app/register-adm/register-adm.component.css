@@ -1,4 +1,4 @@
-html, body, div, span, applet, object, iframe,
+/* html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -18,7 +18,10 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+
+
+
+
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
     display: block;
@@ -54,12 +57,9 @@ table {
     display: flex;
     flex-direction:column;
   }
-  /*
-  router-outlet + *  {
-    padding: 0 16px;
-  }*/
   
-  /* Text */
+  
+
   
   h1 {
     font-size: 32px;
@@ -78,19 +78,14 @@ table {
     padding: 5px;
   }
   
-  /* Hyperlink */
+
   
-  /* a {
-    cursor: pointer;
-    color: #1976d2;
-    text-decoration: none;
-  } */
+ 
   
   a:hover {
     opacity: 0.8;
   }
   
-  /* Input */
   
   input {
     font-size: 14px;
@@ -108,7 +103,7 @@ table {
     text-transform: uppercase;
   }
   
-  /* Button */
+  
   .button, button {
     display: inline-flex;
     align-items: center;
@@ -131,7 +126,7 @@ table {
     cursor: auto;
   }
   
-  /* Fancy Button */
+
   
   .fancy-button {
     background-color: white;
@@ -143,24 +138,10 @@ table {
     padding-right: 4px;
   }
   
-  /* Top Bar */
+
   
-  /* app-top-bar {
-    width: 100%;
-    height: 30%;
-    background-color: #1976d2;
-    padding: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  } */
   
-  /* app-top-bar h1 {
-    color: white;
-    margin: 0;
-  } */
-  
-  /* Checkout Cart, Shipping Prices */
+
   
   .cart-item, .shipping-item {
     width: 100%;
@@ -313,7 +294,6 @@ table {
   .register{
     width: 90%;
     height: 100%;
-    /* border: 0.5px solid gray; */
     padding: 5px;
     margin: 2% auto 0 auto;
   }
@@ -477,4 +457,199 @@ table {
 
 /* .aiaiaiuiui{
   margin-right:25px;
-} */
+} */ 
+
+
+/* .login{
+    text-align: center;
+
+}
+.loginInput{
+    size: 200px;
+    margin-bottom: 1%;
+}
+.passwordInput{
+    margin-bottom: 2%;
+}
+.sub{
+    margin-top: 2%;
+    margin-bottom: 0;
+}
+.link{
+    color: gray;
+    cursor: pointer;
+}
+.button, button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 2px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+  }
+  
+  .button:hover, button:hover {
+    opacity: 0.8;
+    font-weight: normal;
+  }
+  
+  .button:disabled, button:disabled {
+    opacity: 0.5;
+    cursor: auto;
+  }
+
+  
+  .fancy-button {
+    background-color: white;
+    color: #1976d2;
+  }
+  
+  .fancy-button i.material-icons {
+    color: #1976d2;
+    padding-right: 4px;
+  }
+*/
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+/* GENERAL STYLES */
+body,
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Space Grotesk", sans-serif;
+  
+}
+body {
+  background: url("../../assets/img/Bosch-Supergraphic.svg");
+  background: linear-gradient(to right, #953636, #970000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.back{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* LOGIN FORM STYLES */
+.login-box {
+  background-color: #fff;
+  padding: 40px;
+  min-width: 500px;
+  max-width: 700px;
+  border-radius: 7px;
+  border-left: 7px solid #fc3939;
+  box-shadow: 0px 0px 37px 25px rgba(0,0,0,0.1);
+
+}
+@media screen and (max-width: 500px) {
+  .login-box{
+    min-width: 250px;
+    border-left:none;
+  }
+  .login-box .auth-action {
+    display: block;
+  }
+  .login-box .cai{
+    display: block;
+  }
+  .login-box .auth-action a {
+    display: block;
+  }
+}
+
+.login-box .title {
+  font-size: 18px;
+  text-align: center;
+  padding: 15px 0;
+}
+.login-box .input-box {
+  position: relative;
+  margin-bottom: 15px;
+}
+.login-box .input-box .input {
+  border: none;
+  border-bottom: 1px solid #efefef;
+  background-color: #ececec;
+  outline: none;
+  width: 100%;
+  padding: 14px 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 16px;
+  box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+}
+.login-box .input-box label {
+  position: absolute;
+  top: 20px;
+  left: 5px;
+  padding: 14px 5px;
+  display: block;
+  pointer-events: none;
+  transition: 0.2s;
+}
+.login-box .input-box input:focus ~ label,
+.login-box .input-box input:valid ~ label {
+  top: -20px;
+  left: 2px;
+  font-size: 14px;
+}
+.login-box .input-box .view-pass {
+  width: 45px;
+  position: absolute;
+  top: 27px;
+  right: 2px;
+  cursor: pointer;
+  background-color: rgba(236, 236, 236, 0.8);
+  padding: 7px 12px;
+  backdrop-filter: blur(3px);
+  display: none;
+}
+.login-box button[type="submit"] {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  border-left: 2px solid #f40303;
+  padding: 15px 0;
+  font-size: 16px;
+  color: #fff;
+  background: #fc3939;
+  background: linear-gradient(to right, #ff2929, #fc3939);
+  margin-top: 30px;
+  cursor:pointer;
+  margin: 5px;
+}
+.login-box .auth-action {
+  display: flex;
+  justify-content: center-;
+}
+.login-box .auth-action a {
+  display: inline-block;
+  padding: 15px 0;
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+}
+.login-box .cai {
+  display: flex;
+  justify-content: flex-end;
+}
+.login-box .cai a {
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+}
+.buttons-adm{
+  display: flex;
+}
