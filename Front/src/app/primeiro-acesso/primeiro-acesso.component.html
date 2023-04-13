@@ -1,4 +1,4 @@
-<app-top-bar></app-top-bar>
+<!-- <app-top-bar></app-top-bar>
 <div class="login">
    <form>
 
@@ -15,4 +15,24 @@
             <button type="button" class="btn btn-primary" (click)="editSenha()">Trocar</button>
         </div>
    </form>
+</div> -->
+<div class="back">
+    <form action="" class="login-box" autocomplete="on">
+        <div class="title">
+            <h1>TROCA DE SENHA</h1>
+        </div>
+        <div class="input-box">
+            <input type="password" name="" required class="input" id="password">
+            <label for="username">SENHA ANTIGA</label>
+        </div>
+        <div class="input-box">
+            <input type="password" name="" required class="input pass-input" id="passwordNew">
+            <img src="assets/img/view.png" class="view-pass" alt="">
+            <label for="password">SENHA NOVA</label>
+        </div>
+        
+        <button type="submit" (click)="editSenha()">Entrar</button>
+        
+    </form>
+
 </div>
