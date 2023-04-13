@@ -5,14 +5,15 @@ import axios from 'axios';
 import { Route, Router } from '@angular/router';
 import { DatePipe, Time } from '@angular/common';
 import { User } from '../user';
+import { AgendaUser } from '../agendaUser';
 
 @Component({
-  selector: 'app-ocorrencia-list',
-  templateUrl: './ocorrencia-list.component.html',
-  styleUrls: ['./ocorrencia-list.component.css']
+  selector: 'app-agenda-list',
+  templateUrl: './agenda-list.component.html',
+  styleUrls: ['./agenda-list.component.css']
 })
-export class OcorrenciaListComponent implements OnInit{
-  ocorrencias: Array<OcorrenciasUser> = [];
+export class AgendaListComponent implements OnInit{
+  agendasUser: Array<AgendaUser> = [];
   dadoscorrencias: Array<Ocorrencias> = [];
 
   id : number = -1
@@ -20,6 +21,8 @@ export class OcorrenciaListComponent implements OnInit{
   caminho : string | null = "";
   adm : User
   medico : User
+
+  idmedico: number = 0;
 
   constructor(private router: Router) { 
     this.adm = {
@@ -100,6 +103,8 @@ export class OcorrenciaListComponent implements OnInit{
     .then(function (response:any) {
       console.log(JSON.stringify(response.data));
       self2.medico = response.data;
+      self2.idmedico= self2.medico.id;
+      console.log(self2.idmedico)
 
       let dataNova = self2.adm.dataNasc.substring(0,10).toString();
       let day = dataNova.substring(8,10).toString();
@@ -121,29 +126,29 @@ export class OcorrenciaListComponent implements OnInit{
     this.tiposOcorrencias();
   }
 
-  dadosUser(descricoes : string, ocorrenciaId : number, data1 : Date, data2 : Date, horaE : string, horaS : string){
-    const date = new Date();
+  // dadosUser(descricoes : string, ocorrenciaId : number, data1 : Date, data2 : Date, horaE : string, horaS : string){
+  //   const date = new Date();
 
-    let descricao = document.body.querySelector('#description') as HTMLInputElement
-    descricao.value = descricoes 
+  //   let descricao = document.body.querySelector('#description') as HTMLInputElement
+  //   descricao.value = descricoes 
 
-    let datastart = document.body.querySelector('#datastart') as HTMLInputElement
-    datastart.valueAsDate = data1 != null ? new Date(data1) : date;
+  //   let datastart = document.body.querySelector('#datastart') as HTMLInputElement
+  //   datastart.valueAsDate = data1 != null ? new Date(data1) : date;
     
-    let dataend = document.body.querySelector('#dataend') as HTMLInputElement
-    dataend.valueAsDate = data2 != null ? new Date(data2) : date;
+  //   let dataend = document.body.querySelector('#dataend') as HTMLInputElement
+  //   dataend.valueAsDate = data2 != null ? new Date(data2) : date;
 
-    var horaEntrada = horaE[11]+horaE[12] + ":" + horaE[14] + horaE[15];
-    var horaSaida =horaS[11]+horaS[12] + ":" + horaS[14] + horaS[15];
+  //   var horaEntrada = horaE[11]+horaE[12] + ":" + horaE[14] + horaE[15];
+  //   var horaSaida =horaS[11]+horaS[12] + ":" + horaS[14] + horaS[15];
 
-    let horaEnt = document.body.querySelector('#horaE') as HTMLInputElement
-    horaEnt.value = horaEntrada;
+  //   let horaEnt = document.body.querySelector('#horaE') as HTMLInputElement
+  //   horaEnt.value = horaEntrada;
 
-    let horaSai = document.body.querySelector('#horaS') as HTMLInputElement
-    horaSai.value = horaSaida;
+  //   let horaSai = document.body.querySelector('#horaS') as HTMLInputElement
+  //   horaSai.value = horaSaida;
 
-    this.id = ocorrenciaId
-  }
+  //   this.id = ocorrenciaId
+  // }
 
   mandaDoc(documento : string){
     this.caminho = documento;
@@ -176,8 +181,8 @@ export class OcorrenciaListComponent implements OnInit{
   todos(){
     var config = {
       method: 'get',
-      url: 'http://localhost:5051/Ocorrencia/getAll',
-      headers: {},
+      url: 'http://localhost:5051/Agenda/getAll/',
+      headers: {'Authorization': 'Bearer ' + localStorage.getItem('authMedico')},
       data: '',
     };
 
@@ -185,7 +190,8 @@ export class OcorrenciaListComponent implements OnInit{
     axios(config)
       .then(function (response) {
         console.log(response.data)
-        instance.ocorrencias = response.data;
+        instance.agendasUser = response.data;
+        console.log(instance.agendasUser);
       })
       .catch(function (error) {
         console.log(error);
@@ -202,7 +208,7 @@ export class OcorrenciaListComponent implements OnInit{
     };
     var instance = this;
     axios(config).then(function (response) {
-      instance.ocorrencias = response.data;
+      instance.agendasUser = response.data;
     })
   }
 
@@ -250,7 +256,7 @@ export class OcorrenciaListComponent implements OnInit{
     };
     let instance = this;
     axios(config).then(function (response) {
-      instance.ocorrencias = response.data;
+      instance.agendasUser = response.data;
       
       var startsDate = new Date(datastart.value);
       startsDate.setDate(startsDate.getDate() + 1)
@@ -290,12 +296,27 @@ export class OcorrenciaListComponent implements OnInit{
     };
 
     axios(config).then(function (response) {
-      instance.ocorrencias.forEach(element => {
+      instance.agendasUser.forEach(element => {
         if(element.id == instance.idPegado){
-          var indice = instance.ocorrencias?.indexOf(element)
-          instance.ocorrencias.splice(indice, 1)
+          var indice = instance.agendasUser?.indexOf(element)
+          instance.agendasUser.splice(indice, 1)
         }
       });
+    })
+  }
+  approve(){
+    var instance = this
+    var config = {
+      method: 'put',
+      url: 'http://localhost:5051/Agenda/Approve/' + instance.idPegado,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data : ''
+    };
+
+    axios(config).then(function (response) {
+      console.log(response.status)
     })
   }
 

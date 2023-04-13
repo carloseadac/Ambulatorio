@@ -1,0 +1,107 @@
+<app-top-bar></app-top-bar>
+<div class="principal">
+  <div class="caixa-filtro">
+    <div class="filtro">
+      <h1>Filtro:</h1>
+      <input type="text" class="filter" id="EDV" placeholder="EDV"/>
+      <button (click)="filtro()">OK</button>
+      <button (click)="reset()">X</button>
+    </div>
+  </div>
+  <div class="tabela">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+          <th>EDV</th>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Data</th>
+          <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let agenda of agendasUser">
+            <td>{{agenda.user.edv}}</td>
+            <td>{{agenda.user.nome}}</td>
+            <td>{{agenda.startDate | date : "dd/MM/yy hh:MM"}}</td>
+            <td>{{agenda.endDate | date: "dd/MM/yy hh:MM" }}</td>
+            <td class="itens">
+              <a data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="pegaId(agenda.id)"  ><img src="../../assets/icons/approve.png" class="imgtab2" /></a>
+              <!-- <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="dadosUser(agenda.id, agenda.StartDate, agenda.EndDate)"><img src="../../assets/icons/edit-pencil-svgrepo-com.svg" class="imgtab" /></a> -->
+              <!-- <a data-bs-toggle="modal" data-bs-target="#exampleModal3" (click)="mandaDoc(ocorrencia.documento)"  ><img src="../../assets/img/view.png" class="imgtab3" /></a> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modificar Ocorrência:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <br>
+          <h4>Tipo Ocorrência</h4>
+          <select name="ocorrencias" id="ocorrencias">
+            <option *ngFor="let dados of dadoscorrencias" value="{{dados.id}}" id="dadosNome">{{dados.nome}}</option>
+          </select>
+          <br>
+          <br>
+          <h4>Descrição</h4>
+          <input type="text" class="form-control" id="description" placeholder="New description" />
+          <br>
+          <h4>Data de início</h4>
+          <input type="date" class="form-control" id="datastart" placeholder="New start date" />
+          <br>
+          <h4>Data final</h4>
+          <input type="date" class="form-control" id="dataend" placeholder="New end date" />
+          <br>
+          <h4>Hora Entrada</h4>
+          <input type="time" class="form-control" id="horaE"  />
+          <br>
+          <h4>Hora Saída</h4>
+          <input type="time" class="form-control" id="horaS"  />
+          <br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary" (click)="editOcorrencia()" data-bs-dismiss="modal">Salvar Mudanças</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Deseja mesmo aprovar?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary" (click)="approve()" data-bs-dismiss="modal">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Documento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img style="width: 100%; height: 95%;" src="{{caminho}}">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>

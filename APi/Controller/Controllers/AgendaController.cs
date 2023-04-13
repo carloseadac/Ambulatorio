@@ -23,7 +23,7 @@ public class AgendaController : ControllerBase
 
     [HttpPost]
     [Route("register")]
-    public object registerUser([FromBody] Agenda agenda){
+    public object registerAgenda([FromBody] Agenda agenda){
         var Id = agenda.save();
         return new{
             StartDate = agenda.StartDate,
@@ -54,6 +54,14 @@ public class AgendaController : ControllerBase
         var id = Lib.GetIdFromRequest(Request.Headers["Authorization"].ToString());
         var agendas = Model.Agenda.findAll(id);
         return agendas;
+    }
+
+    [HttpPut]
+    [Route("Approve/{id}")]
+
+    public void approveWithId(int id)
+    {
+        Model.Agenda.updateApproved(id);
     }
 
 

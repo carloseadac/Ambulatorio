@@ -213,6 +213,9 @@ export class OcorrenciaComponent implements OnInit {
     let descricao = document.getElementById("descricao") as HTMLInputElement;
     let comprovante=this.userId*datinha
     if(this.gamb[0]==5){
+      let selectMedico = document.getElementById("medico") as HTMLSelectElement;
+      let option = select.options[selectMedico.selectedIndex].value;
+      console.log(option)
       let numbers = dataEntrada.value.split("-");
       let hours= horaEntrada.value.split(":");
       console.log(numbers);
@@ -223,16 +226,9 @@ export class OcorrenciaComponent implements OnInit {
       this.newDataSaida.setMinutes(parseInt(hours[1])+30)
       console.log(this.newDataSaida)
       var data = JSON.stringify({
-        "descricao": descricao?.value,
-        "dataEntrada": dataEntrada?.value + "T" + horaEntrada?.value + ":00.000Z",
-        "dataSaida": this.newDataSaida,
-        "documento": ".",
-        "comprovante": comprovante,
-        "ocorrencias":{
-          "id": option?.value,
-          "nome": ""
-        },
-        "usuario":{
+        "startDate": dataEntrada?.value + "T" + horaEntrada?.value + ":00.000Z",
+        "EndDate": this.newDataSaida,
+        "User":{
           "id": this.userId,
           "nome": "",
           "edv": "",
@@ -240,9 +236,19 @@ export class OcorrenciaComponent implements OnInit {
           "dataNasc": this.newDataSaida,
           "email": "",
           "senha": ""
-        } 
+        },
+        "Medico":{
+          "id": option,
+          "nome": "",
+          "edv": "",
+          "area": "",
+          "dataNasc": this.newDataSaida,
+          "email": "",
+          "senha": ""
+        }  
         
       })
+
     }
     else{
       var data = JSON.stringify({
@@ -266,27 +272,28 @@ export class OcorrenciaComponent implements OnInit {
         } 
         
       })
+      var config = {
+        method: 'post',
+        url: 'http://localhost:5051/Ocorrencia/register',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+      let self4 = this;
+      axios(config)
+      .then(function (response) {
+        alert("Registrado com sucesso!");
+        
+      })
+      .catch(function (error) {
+        alert("Erro Genérico!");
+        console.log(error);
+      });
     }
     
 
-    var config = {
-      method: 'post',
-      url: 'http://localhost:5051/Ocorrencia/register',
-      headers: { 
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-    let self4 = this;
-    axios(config)
-    .then(function (response) {
-      alert("Registrado com sucesso!");
-      
-    })
-    .catch(function (error) {
-      alert("Erro Genérico!");
-      console.log(error);
-    });
+
 
     var config1 = {
       method: 'post',
@@ -296,7 +303,7 @@ export class OcorrenciaComponent implements OnInit {
       },
       data : data
     };
-    axios(config)
+    axios(config1)
     .then(function (response) {
       alert("Registrado com sucesso!");
       

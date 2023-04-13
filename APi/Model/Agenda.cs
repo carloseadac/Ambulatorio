@@ -17,12 +17,14 @@ public class Agenda
     {
         using (var context = new Model.Context())
         {
+            Medico = context.Medico.FirstOrDefault(d=> d.Id == this.Medico.Id);
+            User = context.User.FirstOrDefault(d=> d.Id == this.User.Id);
             var obj = new Model.Agenda
             {
                 StartDate = this.StartDate,
                 EndDate = this.StartDate.AddMinutes(30),
-                Medico = this.Medico,
-                User = this.User,
+                Medico = Medico,
+                User = User,
                 Aprovado = false
             };
             context.Agenda.Add(obj);
@@ -51,12 +53,14 @@ public class Agenda
     {
         using (var context = new Context())
         {
-            var agenda = context.Agenda.Where(c => c.Medico.Id == id);
-
+            var agenda = context.Agenda.Include(p => p.User).Include(p => p.Medico).Where(c => c.Medico.Id == id);
+            Console.WriteLine(agenda);
             List<object> agendas = new List<object>();
 
             foreach (var item in agenda)
             {
+                // User = context.User.Where(d=> d.id == item.user.id);
+                // item.user = User;
                 agendas.Add(item);
             }
 
@@ -91,6 +95,15 @@ public class Agenda
             {
                 agendas.Aprovado= agendaDTO.IsApproved;
             }
+            context.SaveChanges();
+        }
+    }
+    public static void updateApproved(int id)
+    {
+        using (var context = new Context())
+        {
+            var agendas = context.Agenda.FirstOrDefault(i => i.Id == id);
+            agendas.Aprovado = true;
             context.SaveChanges();
         }
     }
