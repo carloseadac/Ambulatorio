@@ -8,11 +8,11 @@ import { User } from '../user';
 import { AgendaUser } from '../agendaUser';
 
 @Component({
-  selector: 'app-agenda-list',
-  templateUrl: './agenda-list.component.html',
-  styleUrls: ['./agenda-list.component.css']
+  selector: 'app-agenda-calendar',
+  templateUrl: './agenda-calendar.component.html',
+  styleUrls: ['./agenda-calendar.component.css']
 })
-export class AgendaListComponent implements OnInit{
+export class AgendaCalendarComponent implements OnInit{
   agendasUser: Array<AgendaUser> = [];
   dadoscorrencias: Array<Ocorrencias> = [];
 
@@ -126,7 +126,7 @@ export class AgendaListComponent implements OnInit{
   todos(){
     var config = {
       method: 'get',
-      url: 'http://localhost:5051/Agenda/getAll/',
+      url: 'http://localhost:5051/Agenda/getAllDay/',
       headers: {'Authorization': 'Bearer ' + localStorage.getItem('authMedico')},
       data: '',
     };

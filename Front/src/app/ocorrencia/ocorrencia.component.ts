@@ -196,7 +196,7 @@ export class OcorrenciaComponent implements OnInit {
   register(){
     const datinha = new Date().getTime();
     let select = document.getElementById("ocorrencia") as HTMLSelectElement;
-    let option = select.options[select.selectedIndex];
+    let options = select.options[select.selectedIndex];
     let dataEntrada = document.getElementById("dateE") as HTMLInputElement;
     let dataSaida =document.getElementById("dateS") as HTMLInputElement;
     if(this.gamb[0] == 2){
@@ -248,37 +248,53 @@ export class OcorrenciaComponent implements OnInit {
         }  
         
       })
-
-    }
-    else{
-      var data = JSON.stringify({
+      var data2 = JSON.stringify({
         "descricao": descricao?.value,
         "dataEntrada": dataEntrada?.value + "T" + horaEntrada?.value + ":00.000Z",
-        "dataSaida": dataSaida?.value + "T" + horaSaida?.value + ":00.000Z",
-        "documento": localStorage.getItem("imagem"),
+        "dataSaida": this.newDataSaida,
+        "documento": '',
         "comprovante": comprovante,
         "ocorrencias":{
-          "id": option?.value,
-          "nome": ""
+          "id": options.value,
+          "nome": "Consulta"
         },
         "usuario":{
           "id": this.userId,
           "nome": "",
           "edv": "",
           "area": "",
-          "dataNasc": dataSaida?.value + "T" + horaSaida?.value + ":00.000Z",
+          "dataNasc": this.newDataSaida,
           "email": "",
           "senha": ""
         } 
         
       })
+
+      var config1 = {
+        method: 'post',
+        url: 'http://localhost:5051/Agenda/register',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+      axios(config1)
+      .then(function (response) {
+        alert("Registrado com sucesso!");
+        
+      })
+      .catch(function (error) {
+        
+        alert("Erro Genérico!");
+        console.log(error);
+      });
       var config = {
         method: 'post',
         url: 'http://localhost:5051/Ocorrencia/register',
         headers: { 
           'Content-Type': 'application/json'
         },
-        data : data
+        data : data2
       };
       let self4 = this;
       axios(config)
@@ -287,31 +303,88 @@ export class OcorrenciaComponent implements OnInit {
         
       })
       .catch(function (error) {
+        console.log(data2)
         alert("Erro Genérico!");
         console.log(error);
       });
+
+
+
+
+
+    }
+    else{
+      if(this.gamb[0]==5){
+        var data = JSON.stringify({
+          "descricao": descricao?.value,
+          "dataEntrada": dataEntrada?.value + "T" + horaEntrada?.value + ":00.000Z",
+          "dataSaida": this.newDataSaida,
+          "documento": localStorage.getItem("imagem"),
+          "comprovante": comprovante,
+          "Ocorrencias":{
+            "id": options?.value,
+            "nome": ""
+          },
+          "usuario":{
+            "id": this.userId,
+            "nome": "",
+            "edv": "",
+            "area": "",
+            "dataNasc": dataSaida?.value + "T" + horaSaida?.value + ":00.000Z",
+            "email": "",
+            "senha": ""
+          }})
+      }
+      else{
+        var data = JSON.stringify({
+          "descricao": descricao?.value,
+          "dataEntrada": dataEntrada?.value + "T" + horaEntrada?.value + ":00.000Z",
+          "dataSaida": dataSaida?.value + "T" + horaSaida?.value + ":00.000Z",
+          "documento": localStorage.getItem("imagem"),
+          "comprovante": comprovante,
+          "Ocorrencias":{
+            "id": options?.value,
+            "nome": ""
+          },
+          "usuario":{
+            "id": this.userId,
+            "nome": "",
+            "edv": "",
+            "area": "",
+            "dataNasc": dataSaida?.value + "T" + horaSaida?.value + ":00.000Z",
+            "email": "",
+            "senha": ""
+          }
+        })
+        var config = {
+          method: 'post',
+          url: 'http://localhost:5051/Ocorrencia/register',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : data
+        };
+        let self4 = this;
+        axios(config)
+        .then(function (response) {
+          alert("Registrado com sucesso!");
+          
+        })
+        .catch(function (error) {
+          console.log(data)
+          alert("Erro Genérico!");
+          console.log(error);
+        }); 
+      }
+      
+        
+      
     }
     
 
 
 
-    var config1 = {
-      method: 'post',
-      url: 'http://localhost:5051/Agenda/register',
-      headers: { 
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-    axios(config1)
-    .then(function (response) {
-      alert("Registrado com sucesso!");
-      
-    })
-    .catch(function (error) {
-      alert("Erro Genérico!");
-      console.log(error);
-    });
+    
   }
 
 

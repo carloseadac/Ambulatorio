@@ -9,6 +9,7 @@
     </div>
   </div>
   <div class="tabela">
+      <h1>Proximas consultas</h1>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -16,21 +17,21 @@
           <th>Nome</th>
           <th>Tipo</th>
           <th>Data</th>
-          <th>Ações</th>
+          <!-- <th>Ações</th> -->
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let agenda of agendasUser">
-            <ng-container *ngIf="!agenda.aprovado">
+            <ng-container *ngIf="agenda.aprovado">
               <td>{{agenda.user.edv}}</td>
               <td>{{agenda.user.nome}}</td>
               <td>{{agenda.startDate | date : "dd/MM/yyyy HH:mm"}}</td>
               <td>{{agenda.endDate | date: "dd/MM/yyyy HH:mm" }}</td>
-              <td class="itens">
-                <a data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="pegaId(agenda.id)"  ><img src="../../assets/icons/approve.png" class="imgtab2" /></a>
+              <!-- <td class="itens"> -->
+                <!-- <a data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="pegaId(agenda.id)"  ><img src="../../assets/icons/approve.png" class="imgtab2" /></a> -->
                 <!-- <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="dadosUser(agenda.id, agenda.StartDate, agenda.EndDate)"><img src="../../assets/icons/edit-pencil-svgrepo-com.svg" class="imgtab" /></a> -->
                 <!-- <a data-bs-toggle="modal" data-bs-target="#exampleModal3" (click)="mandaDoc(ocorrencia.documento)"  ><img src="../../assets/img/view.png" class="imgtab3" /></a> -->
-              </td>
+              <!-- </td> -->
             </ng-container>
             
           </tr>

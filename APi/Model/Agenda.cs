@@ -62,6 +62,26 @@ public class Agenda
                 // User = context.User.Where(d=> d.id == item.user.id);
                 // item.user = User;
                 agendas.Add(item);
+                Console.WriteLine(item);
+            }
+
+            return agendas;
+        }
+    }
+    public static List<object> findAllDay(int id)
+    {
+        using (var context = new Context())
+        {
+            Console.WriteLine(DateTime.Now);
+            var agenda = context.Agenda.Include(p => p.User).Include(p => p.Medico).Where(c => c.Medico.Id == id).Where(f => f.StartDate > DateTime.Now);
+            List<object> agendas = new List<object>();
+
+            foreach (var item in agenda)
+            {
+                // User = context.User.Where(d=> d.id == item.user.id);
+                // item.user = User;
+                agendas.Add(item);
+                Console.WriteLine(item);
             }
 
             return agendas;

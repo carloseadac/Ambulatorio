@@ -56,6 +56,16 @@ public class AgendaController : ControllerBase
         return agendas;
     }
 
+    [HttpGet]
+    [Route("getAllDay")]
+
+    public object getAllInformationsDay()
+    {
+        var id = Lib.GetIdFromRequest(Request.Headers["Authorization"].ToString());
+        var agendas = Model.Agenda.findAllDay(id);
+        return agendas;
+    }
+
     [HttpPut]
     [Route("Approve/{id}")]
 
