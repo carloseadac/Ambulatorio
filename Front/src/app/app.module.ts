@@ -18,6 +18,13 @@ import { AgendaListComponent } from './agenda-list/agenda-list.component';
 import { HomeComponent } from './home/home.component';
 import { AgendaCalendarComponent } from './agenda-calendar/agenda-calendar.component';
 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +55,15 @@ import { AgendaCalendarComponent } from './agenda-calendar/agenda-calendar.compo
       {path: 'agendalist', component: AgendaListComponent},
       {path: 'home', component: HomeComponent},
       {path: 'agendacalendar', component: AgendaCalendarComponent}
-    ])
+    ]),
+    CommonModule,
+    FormsModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

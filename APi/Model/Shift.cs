@@ -58,20 +58,13 @@ public class Shift
         }
     }
 
-    public static List<object> findAll(int id)
+    public static object findAll(int id)
     {
         using (var context = new Context())
         {
-            var shift = context.Shift.Where(c => c.Medico.Id == id);
+            var shift = context.Shift.Where(c => c.Medico.Id == id).FirstOrDefault();          
 
-            List<object> shifts = new List<object>();
-
-            foreach (var item in shift)
-            {
-                shifts.Add(item);
-            }
-
-            return shifts;
+            return shift;
         }
     }
 
