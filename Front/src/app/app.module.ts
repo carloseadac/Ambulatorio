@@ -16,6 +16,8 @@ import { PrimeiroAcessoComponent } from './primeiro-acesso/primeiro-acesso.compo
 import { RegisterAdmComponent } from './register-adm/register-adm.component';
 import { AgendaListComponent } from './agenda-list/agenda-list.component';
 import { HomeComponent } from './home/home.component';
+import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { ConsultasListComponent } from './consultas-list/consultas-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { HomeComponent } from './home/home.component';
     PrimeiroAcessoComponent,
     RegisterAdmComponent,
     AgendaListComponent,
-    HomeComponent
+    HomeComponent,
+    HomeAdminComponent,
+    ConsultasListComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ import { HomeComponent } from './home/home.component';
       {path: 'trocarSenha', component: PrimeiroAcessoComponent},
       {path: 'registerAdm', component: RegisterAdmComponent},
       {path: 'agendalist', component: AgendaListComponent},
-      {path: 'home', component: HomeComponent}
+      {path: 'home', component: HomeComponent},
+      {path: 'homeAdmin', component: HomeAdminComponent},
+      {path: 'consultaslist', component: ConsultasListComponent}
     ])
   ],
   providers: [],
