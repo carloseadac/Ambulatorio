@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Controller.Controllers;
 
 [ApiController]
-[Route("agenda")]
+[Route("shift")]
 public class ShiftController : ControllerBase
 {
 
