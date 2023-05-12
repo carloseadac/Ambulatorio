@@ -39,3 +39,6 @@ body{
     box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.15), 
       -5px -5px 30px 15px rgba(0,0,0,0.12);
   }
+  .image-card{
+    transform: scale(0.75);
+  }

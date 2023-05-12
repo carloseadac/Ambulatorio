@@ -2,6 +2,10 @@
 body{
   font-family: "Space Grotesk", sans-serif;
 }
+.image-card{
+  transform: scale(0.75);
+}
+
 .card {
     margin: 30px auto;
     width: 300px;
