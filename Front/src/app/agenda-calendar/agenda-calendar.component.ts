@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { OcorrenciasUser } from '../ocorrenciasUser';
 import { Ocorrencias } from '../ocorrencias';
 import axios from 'axios';
@@ -6,6 +6,9 @@ import { Route, Router } from '@angular/router';
 import { DatePipe, Time } from '@angular/common';
 import { User } from '../user';
 import { AgendaUser } from '../agendaUser';
+
+import { BryntumCalendarComponent, BryntumProjectModelComponent } from '@bryntum/calendar-angular';
+import { calendarConfig, projectConfig } from '../app.config';
 
 import {
   ChangeDetectionStrategy,
@@ -47,7 +50,8 @@ const colors: Record<string, EventColor> = {
   selector: 'app-agenda-calendar',
   templateUrl: './agenda-calendar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./agenda-calendar.component.css']
+  styleUrls : ['./agenda-calendar.component.css','../build/calendar.classic-light.css'],
+  encapsulation : ViewEncapsulation.None
 })
 export class AgendaCalendarComponent implements OnInit{
 
@@ -80,46 +84,46 @@ export class AgendaCalendarComponent implements OnInit{
 
   refresh = new Subject<void>();
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: { ...colors['blue'] },
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: { ...colors['blue'] },
-      actions: this.actions,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: { ...colors['blue'] },
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: { ...colors['blue'] },
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-  ];
+  // events: CalendarEvent[] = [
+  //   {
+  //     start: subDays(startOfDay(new Date()), 1),
+  //     end: addDays(new Date(), 1),
+  //     title: 'A 3 day event',
+  //     color: { ...colors['blue'] },
+  //     actions: this.actions,
+  //     allDay: true,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true,
+  //     },
+  //     draggable: true,
+  //   },
+  //   {
+  //     start: startOfDay(new Date()),
+  //     title: 'An event with no end date',
+  //     color: { ...colors['blue'] },
+  //     actions: this.actions,
+  //   },
+  //   {
+  //     start: subDays(endOfMonth(new Date()), 3),
+  //     end: addDays(endOfMonth(new Date()), 3),
+  //     title: 'A long event that spans 2 months',
+  //     color: { ...colors['blue'] },
+  //     allDay: true,
+  //   },
+  //   {
+  //     start: addHours(startOfDay(new Date()), 2),
+  //     end: addHours(new Date(), 2),
+  //     title: 'A draggable and resizable event',
+  //     color: { ...colors['blue'] },
+  //     actions: this.actions,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true,
+  //     },
+  //     draggable: true,
+  //   },
+  // ];
 
   activeDayIsOpen: boolean = true;
 
@@ -197,15 +201,15 @@ export class AgendaCalendarComponent implements OnInit{
 
   ngOnInit(): void {
     let self = this;
-    if(localStorage.getItem("authOwner") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authMedico") == null ){
-      self.router.navigate(["/"])
-    }
-    if(localStorage.getItem("authToken") != null){
-      self.router.navigate(["/"])
-    }
-    if(localStorage.getItem("authMedico") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authOwner") == null){
-      self.router.navigate(["/"])
-    }
+    // if(localStorage.getItem("authOwner") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authMedico") == null ){
+    //   self.router.navigate(["/"])
+    // }
+    // if(localStorage.getItem("authToken") != null){
+    //   self.router.navigate(["/"])
+    // }
+    // if(localStorage.getItem("authMedico") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authOwner") == null){
+    //   self.router.navigate(["/"])
+    // }
 
     var data3 = JSON.stringify({
       
@@ -377,4 +381,27 @@ export class AgendaCalendarComponent implements OnInit{
       });
   }
 }
+resources = [
+  {
+      id         : 1,
+      name       : 'Default Calendar',
+      eventColor : 'blue'
+  }
+];
+
+events = [
+  {
+      id         : 1,
+      name       : 'Meeting',
+      startDate  : '2023-05-12T10:00:00',
+      endDate    : '2023-05-12T11:00:00',
+      resourceId : 1
+  }
+];
+
+calendarConfig = calendarConfig;
+projectConfig = projectConfig;
+
+@ViewChild('calendar') calendarComponent!: BryntumCalendarComponent;
+@ViewChild('project') projectComponent!: BryntumProjectModelComponent;
 }

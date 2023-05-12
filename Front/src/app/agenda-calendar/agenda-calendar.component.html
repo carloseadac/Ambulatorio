@@ -1,6 +1,7 @@
+
 <app-top-bar></app-top-bar>
 
-  <div class="row text-center">
+  <!-- <div class="row text-center">
     <div class="col-md-4">
       <div class="btn-group">
         <div
@@ -37,4 +38,16 @@
       
     >
     </mwl-calendar-week-view>
-    
+     -->
+     <bryntum-project-model
+     #project
+     [events] = "events"
+     [resources] = "resources"
+ ></bryntum-project-model>
+ <ng-container *ngIf="calendarConfig.date">
+  <bryntum-calendar
+  #calendar
+  [date] = "calendarConfig.date"
+  [project] = "project"
+></bryntum-calendar>
+ </ng-container>
