@@ -23,12 +23,11 @@ public class AgendaController : ControllerBase
 
     [HttpPost]
     [Route("register")]
-    public object registerAgenda([FromBody] Agenda agenda){
-        var Id = agenda.save();
+    public object registerAgenda([FromBody] AgendaDTO agenda){
+        var Id = new Agenda().save(agenda);
         return new{
             StartDate = agenda.StartDate,
             EndDate = agenda.EndDate,
-            Medico = agenda.Medico.Nome,
             Id = Id
 
         };

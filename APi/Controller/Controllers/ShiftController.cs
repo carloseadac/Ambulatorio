@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Controller.Controllers;
 
 [ApiController]
-[Route("agenda")]
+[Route("shift")]
 public class ShiftController : ControllerBase
 {
 
@@ -23,12 +23,11 @@ public class ShiftController : ControllerBase
 
     [HttpPost]
     [Route("register")]
-    public object registerShift([FromBody] Shift shift){
-        var Id = shift.save();
+    public object registerShift([FromBody] ShiftDTO shift){
+        var Id = new Shift().save(shift);
         return new{
             StartDate = shift.StartTime,
             EndDate = shift.EndTime,
-            Medico = shift.Medico.Nome,
             Id = Id
         };
 

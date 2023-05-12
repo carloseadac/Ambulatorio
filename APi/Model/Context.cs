@@ -15,7 +15,7 @@ public class Context : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
 
-        optionsBuilder.UseSqlServer("Data Source=SNCCH01LAB01F18\\SQLEXPRESS;Initial Catalog=ProjetoOcorrencias; Integrated Security=True");
+        optionsBuilder.UseSqlServer("Data Source=NICHOLAS;Initial Catalog=ProjetoOcorrencias; Integrated Security=True");
 
     }
 
@@ -65,33 +65,40 @@ public class Context : DbContext
         modelBuilder.Entity<Medico>(entity => {
 
             entity.HasKey(a => a.Id);
-            entity.Property(a => a.Nome).IsRequired();
-            entity.Property(a => a.Area).IsRequired();
-            entity.Property(a => a.Edv).IsRequired();
-            entity.Property(a => a.DataNasc).IsRequired();
-            entity.Property(a => a.Email).IsRequired();
-            entity.Property(a => a.Senha).IsRequired();
+            entity.Property(a => a.Nome);
+            entity.Property(a => a.Area);
+            entity.Property(a => a.Edv);
+            entity.Property(a => a.DataNasc);
+            entity.Property(a => a.Email);
+            entity.Property(a => a.Senha);
 
         });
         modelBuilder.Entity<Agenda>(entity => {
             entity.HasKey(a => a.Id);
             entity.Property(a => a.StartDate).IsRequired();
             entity.Property(a => a.EndDate).IsRequired();
-            entity.HasOne(a => a.Medico);
-            entity.HasOne(a => a.User);
+            entity.HasOne(a => a.User)
+            .WithMany()
+            .HasForeignKey(a => a.UserId);
+            entity.HasOne(a => a.Medico)
+            .WithMany()
+            .HasForeignKey(a => a.MedicoId);
         });
         modelBuilder.Entity<Shift>(entity => {
             entity.HasKey(a => a.Id);
-            entity.Property(a => a.StartTime).IsRequired();
-            entity.Property(a => a.EndTime).IsRequired();
-            entity.Property(a => a.Monday).IsRequired();
-            entity.Property(a => a.Tuesday).IsRequired();
-            entity.Property(a => a.Wednesday).IsRequired();
-            entity.Property(a => a.Thursday).IsRequired();
-            entity.Property(a => a.Friday).IsRequired();
-            entity.Property(a => a.Saturday).IsRequired();
-            entity.Property(a => a.Sunday).IsRequired();
-            entity.HasOne(a => a.Medico);
+            entity.Property(a => a.StartTime);
+            entity.Property(a => a.EndTime);
+            entity.Property(a => a.Monday);
+            entity.Property(a => a.Tuesday);
+            entity.Property(a => a.Wednesday);
+            entity.Property(a => a.Thursday);
+            entity.Property(a => a.Friday);
+            entity.Property(a => a.Saturday);
+            entity.Property(a => a.Sunday);
+            entity.Property(a => a.IdMedico);
+            entity.HasOne(a => a.Medico)
+            .WithMany()
+            .HasForeignKey(a => a.IdMedico);
         });
 
     }

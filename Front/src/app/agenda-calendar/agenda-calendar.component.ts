@@ -22,7 +22,7 @@ import {
   isSameMonth,
   addHours,
 } from 'date-fns';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
@@ -75,11 +75,50 @@ export class AgendaCalendarComponent implements OnInit{
     },
   ];
 
-  events$!: Observable<CalendarEvent<{calendar : CalendarEventDto}>[]>
+  events$: Observable<CalendarEvent<{ calendar: CalendarEventDto; }>[]> | undefined
 
   refresh = new Subject<void>();
 
-  events!: CalendarEventDto;
+  events: CalendarEvent[] = [
+    {
+      start: subDays(startOfDay(new Date()), 1),
+      end: addDays(new Date(), 1),
+      title: 'A 3 day event',
+      color: { ...colors['blue'] },
+      actions: this.actions,
+      allDay: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
+      draggable: true,
+    },
+    {
+      start: startOfDay(new Date()),
+      title: 'An event with no end date',
+      color: { ...colors['blue'] },
+      actions: this.actions,
+    },
+    {
+      start: subDays(endOfMonth(new Date()), 3),
+      end: addDays(endOfMonth(new Date()), 3),
+      title: 'A long event that spans 2 months',
+      color: { ...colors['blue'] },
+      allDay: true,
+    },
+    {
+      start: addHours(startOfDay(new Date()), 2),
+      end: addHours(new Date(), 2),
+      title: 'A draggable and resizable event',
+      color: { ...colors['blue'] },
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
+      draggable: true,
+    },
+  ];
 
   activeDayIsOpen: boolean = true;
 
@@ -144,7 +183,7 @@ export class AgendaCalendarComponent implements OnInit{
 
 
 
-  agendasUser: Array<AgendaUser> = [];
+  agendasUser: Observable<AgendaUser> | undefined;
   dadoscorrencias: Array<Ocorrencias> = [];
 
   id : number = -1
@@ -156,16 +195,16 @@ export class AgendaCalendarComponent implements OnInit{
   idmedico: number = 0;
 
   ngOnInit(): void {
-    // let self = this;
-    // if(localStorage.getItem("authOwner") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authMedico") == null ){
-    //   self.router.navigate(["/"])
-    // }
-    // if(localStorage.getItem("authToken") != null){
-    //   self.router.navigate(["/"])
-    // }
-    // if(localStorage.getItem("authMedico") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authOwner") == null){
-    //   self.router.navigate(["/"])
-    // }
+    let self = this;
+    if(localStorage.getItem("authOwner") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authMedico") == null ){
+      self.router.navigate(["/"])
+    }
+    if(localStorage.getItem("authToken") != null){
+      self.router.navigate(["/"])
+    }
+    if(localStorage.getItem("authMedico") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authOwner") == null){
+      self.router.navigate(["/"])
+    }
 
     var data3 = JSON.stringify({
       
@@ -208,29 +247,22 @@ export class AgendaCalendarComponent implements OnInit{
     this.todos();
   }
 
-  // dadosUser(descricoes : string, ocorrenciaId : number, data1 : Date, data2 : Date, horaE : string, horaS : string){
-  //   const date = new Date();
-
-  //   let descricao = document.body.querySelector('#description') as HTMLInputElement
-  //   descricao.value = descricoes 
-
-  //   let datastart = document.body.querySelector('#datastart') as HTMLInputElement
-  //   datastart.valueAsDate = data1 != null ? new Date(data1) : date;
-    
-  //   let dataend = document.body.querySelector('#dataend') as HTMLInputElement
-  //   dataend.valueAsDate = data2 != null ? new Date(data2) : date;
-
-  //   var horaEntrada = horaE[11]+horaE[12] + ":" + horaE[14] + horaE[15];
-  //   var horaSaida =horaS[11]+horaS[12] + ":" + horaS[14] + horaS[15];
-
-  //   let horaEnt = document.body.querySelector('#horaE') as HTMLInputElement
-  //   horaEnt.value = horaEntrada;
-
-  //   let horaSai = document.body.querySelector('#horaS') as HTMLInputElement
-  //   horaSai.value = horaSaida;
-
-  //   this.id = ocorrenciaId
-  // }
+   fetchEvents(){
+    this.events$ = this.agendasUser!.pipe( map((results) => {
+      return results.results.value.map((events : CalendarEventDto) => {
+        return{
+          id: events.Id,
+          title: events.Title,
+          start: new Date(events.Start),
+          end: new Date(events.End),
+          color: {...colors['blue']},
+          meta:{
+            events,
+          },
+          cssClass:'text-color'
+        }})
+      }))
+    } 
 
 
   todos(){
@@ -247,115 +279,34 @@ export class AgendaCalendarComponent implements OnInit{
         instance.events$ = response.data
         instance.events = response.data
         instance.agendasUser = response.data;
-        console.log(instance.agendasUser);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }
 
-  filtro(){
-    let EDV = document.getElementById("EDV") as HTMLInputElement;
-    var config ={
-      method: 'get',
-      url: 'http://localhost:5051/Ocorrencia/getEdv/'+EDV.value,
-      headers: { },
-      data : ''
-    };
-    var instance = this;
-    axios(config).then(function (response) {
-      instance.agendasUser = response.data;
-    })
+
+      var config1 = {
+        method: 'get',
+        url: 'http://localhost:5051/Shift/getAll/',
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('authMedico')},
+        data: '',
+      };
+
+      var instance = this;
+      axios(config1)
+        .then(function (response) {
+          instance.shiftInfo = response.data
+          console.log(instance.shiftInfo);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
   }
 
   pegaId(id : number){
     this.idPegado = id;
   }
 
-  editOcorrencia(){
-    let descricao  = document.getElementById("description") as HTMLInputElement;
-    let datastart  = document.getElementById("datastart") as HTMLInputElement;
-    let dataend = document.getElementById("dataend") as HTMLInputElement;
-    let select = document.getElementById("ocorrencias") as HTMLSelectElement;
-    let horaE = document.getElementById("horaE") as HTMLInputElement;
-    let horaS = document.getElementById("horaS") as HTMLInputElement;
-    let option = select.options[select.selectedIndex];
-    let dadosNome = option.text;
-
-    var data = JSON.stringify({
-      "id": 0,
-      "descricao": descricao?.value,
-      "dataEntrada": datastart?.value + "T" + horaE?.value +":00.000Z",
-      "dataSaida": dataend?.value + "T" + horaS?.value +":00.000Z",
-      "comprovante": "",
-      "documento": "",
-      "ocorrencias":{
-        "id": option?.value,
-        "nome": dadosNome,
-      },
-      "usuario": {
-        "id": 0,
-        "nome": "",
-        "edv": "",
-        "area": "",
-        "dataNasc": dataend?.value + "T00:00:00.000Z",
-        "email": "",
-        "senha": ""
-      }
-    })
-
-    var config ={
-      method: 'put',
-      url: 'http://localhost:5051/Ocorrencia/update/' + this.id,
-      headers: { 'Content-Type': 'application/json' },
-      data : data
-    };
-    let instance = this;
-    axios(config).then(function (response) {
-      instance.agendasUser = response.data;
-      
-      var startsDate = new Date(datastart.value);
-      startsDate.setDate(startsDate.getDate() + 1)
-
-      var endsDate = new Date(dataend.value);
-      endsDate.setDate(endsDate.getDate() + 1)
-      console.log("oi")
-
-      // for(var c = 0; c < instance.ocorrencias.length; c++){
-      //   if(instance.ocorrencias[c].id == instance.id){
-      //     instance.ocorrencias[c].descricao = descricao.value
-      //     instance.ocorrencias[c].ocorrencias.nome = dadosNome
-      //     instance.ocorrencias[c].dataEntrada = startsDate
-      //     instance.ocorrencias[c].dataSaida = endsDate
-      //   }
-      // };
-
-      
-      window.location.reload();
-
-    })
-  }
-  
-  delet(){
-    var instance = this
-    var config = {
-      method: 'delete',
-      url: 'http://localhost:5051/Ocorrencia/del/' + instance.idPegado,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data : ''
-    };
-
-    axios(config).then(function (response) {
-      instance.agendasUser.forEach(element => {
-        if(element.id == instance.idPegado){
-          var indice = instance.agendasUser?.indexOf(element)
-          instance.agendasUser.splice(indice, 1)
-        }
-      });
-    })
-  }
   approve(){
     var instance = this
     var config = {
@@ -376,37 +327,4 @@ export class AgendaCalendarComponent implements OnInit{
     this.initialize();
   }
 
-  beforeweekviewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
-    if ( this.shiftInfo.length !== 0) {
-      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      this.shiftInfo.forEach(info => {
-        const shiftstartDate = new Date(info.startDate);
-        const shiftEndDate = info.EndDate ? new Date (info.EndDate!) : null;
-        shiftstartDate.setHours(0, 0, 0, 0);
-        shiftEndDate?.setHours(0, 0, 0, 0);
-
-        renderEvent.hourColumns.forEach((hourColumn) => {
-          const calendarColumnDate = new Date (hourColumn.date);
-          const dayOfWeek = days[ calendarColumnDate.getDay() ];
-
-            if(calendarColumnDate >= shiftstartDate &&
-              (shiftEndDate === null || calendarColumnDate <= shiftEndDate) && 
-              (dayOfWeek === "Sunday" && info.Sunday ||
-              dayOfWeek === "Monday" && info.Monday ||
-              dayOfWeek === "Tuesday" && info.Tuesday ||
-              dayOfWeek === "Wednesday" && info.Wednesday ||
-              dayOfWeek === "Thursday" && info.Thursday ||
-              dayOfWeek === "Friday" && info.Friday ||
-              dayOfWeek === "Saturday" && info.Saturday)){
-                hourColumn.hours.forEach((hour) => {
-                hour.segments.forEach((segment) => {
-                segment.cssClass = 'bg-green';
-                });
-              })
-
-            }
-      });
-    });
-  }
-}
 }

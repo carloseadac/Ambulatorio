@@ -1,6 +1,7 @@
 import { Time } from "@angular/common"
 
 export interface AgendaUser{
+    results: any
     id : number,
     startDate : Date,
     endDate : Date,

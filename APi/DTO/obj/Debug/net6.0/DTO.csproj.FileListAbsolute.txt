@@ -1,112 +1,12 @@
-C:\Users\COC2CT\Desktop\Justificativas\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.deps.json
-C:\Users\COC2CT\Desktop\Justificativas\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.dll
-C:\Users\COC2CT\Desktop\Justificativas\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.pdb
-C:\Users\COC2CT\Desktop\Justificativas\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.AssemblyReference.cache
-C:\Users\COC2CT\Desktop\Justificativas\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\COC2CT\Desktop\Justificativas\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfoInputs.cache
-C:\Users\COC2CT\Desktop\Justificativas\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfo.cs
-C:\Users\COC2CT\Desktop\Justificativas\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.CoreCompileInputs.cache
-C:\Users\COC2CT\Desktop\Justificativas\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.dll
-C:\Users\COC2CT\Desktop\Justificativas\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\refint\DTO.dll
-C:\Users\COC2CT\Desktop\Justificativas\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.pdb
-C:\Users\COC2CT\Desktop\Justificativas\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\ref\DTO.dll
-C:\Users\OLL2CT\Desktop\Projetos\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.deps.json
-C:\Users\OLL2CT\Desktop\Projetos\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.dll
-C:\Users\OLL2CT\Desktop\Projetos\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.pdb
-C:\Users\OLL2CT\Desktop\Projetos\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.AssemblyReference.cache
-C:\Users\OLL2CT\Desktop\Projetos\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\OLL2CT\Desktop\Projetos\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfoInputs.cache
-C:\Users\OLL2CT\Desktop\Projetos\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfo.cs
-C:\Users\OLL2CT\Desktop\Projetos\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.CoreCompileInputs.cache
-C:\Users\OLL2CT\Desktop\Projetos\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.dll
-C:\Users\OLL2CT\Desktop\Projetos\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\refint\DTO.dll
-C:\Users\OLL2CT\Desktop\Projetos\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.pdb
-C:\Users\OLL2CT\Desktop\Projetos\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\ref\DTO.dll
-<<<<<<< HEAD
-C:\Users\nia1ct\Desktop\repositorio\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.deps.json
-C:\Users\nia1ct\Desktop\repositorio\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.dll
-C:\Users\nia1ct\Desktop\repositorio\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.pdb
-C:\Users\nia1ct\Desktop\repositorio\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.AssemblyReference.cache
-C:\Users\nia1ct\Desktop\repositorio\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\nia1ct\Desktop\repositorio\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfoInputs.cache
-C:\Users\nia1ct\Desktop\repositorio\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfo.cs
-C:\Users\nia1ct\Desktop\repositorio\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.CoreCompileInputs.cache
-C:\Users\nia1ct\Desktop\repositorio\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.dll
-C:\Users\nia1ct\Desktop\repositorio\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\refint\DTO.dll
-C:\Users\nia1ct\Desktop\repositorio\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.pdb
-C:\Users\nia1ct\Desktop\repositorio\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\ref\DTO.dll
-=======
-C:\Users\VIN1CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.deps.json
-C:\Users\VIN1CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.dll
-C:\Users\VIN1CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.pdb
-C:\Users\VIN1CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.AssemblyReference.cache
-C:\Users\VIN1CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\VIN1CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfoInputs.cache
-C:\Users\VIN1CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfo.cs
-C:\Users\VIN1CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.CoreCompileInputs.cache
-C:\Users\VIN1CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.dll
-C:\Users\VIN1CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\refint\DTO.dll
-C:\Users\VIN1CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.pdb
-C:\Users\VIN1CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\ref\DTO.dll
->>>>>>> 8f5c73fd3fbf626324dbd9bcd8b078c71665c5a6
-C:\Users\disrct\Desktop\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.deps.json
-C:\Users\disrct\Desktop\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.dll
-C:\Users\disrct\Desktop\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.pdb
-C:\Users\disrct\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.AssemblyReference.cache
-C:\Users\disrct\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\disrct\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfoInputs.cache
-C:\Users\disrct\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfo.cs
-C:\Users\disrct\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.CoreCompileInputs.cache
-C:\Users\disrct\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.dll
-C:\Users\disrct\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\refint\DTO.dll
-C:\Users\disrct\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.pdb
-C:\Users\disrct\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\ref\DTO.dll
-C:\Users\COC2CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.deps.json
-C:\Users\COC2CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.dll
-C:\Users\COC2CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.pdb
-C:\Users\COC2CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.AssemblyReference.cache
-C:\Users\COC2CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\COC2CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfoInputs.cache
-C:\Users\COC2CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfo.cs
-C:\Users\COC2CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.CoreCompileInputs.cache
-C:\Users\COC2CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.dll
-C:\Users\COC2CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\refint\DTO.dll
-C:\Users\COC2CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.pdb
-C:\Users\COC2CT\Desktop\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\ref\DTO.dll
->>>>>>> 4c4520ac65cdb6ef458937958be6a3eadafdd0bf
-C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.deps.json
-C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.dll
-C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\bin\Debug\net6.0\DTO.pdb
-C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.AssemblyReference.cache
-C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfoInputs.cache
-C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfo.cs
-C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.csproj.CoreCompileInputs.cache
-C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.dll
-C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\refint\DTO.dll
-C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\DTO.pdb
-C:\Users\alexa\OneDrive\Área de Trabalho\Repositorios\ProjetoCampinas_Curitiba\APi\DTO\obj\Debug\net6.0\ref\DTO.dll
-C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\bin\Debug\net6.0\DTO.deps.json
-C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\bin\Debug\net6.0\DTO.dll
-C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\bin\Debug\net6.0\DTO.pdb
-C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.csproj.AssemblyReference.cache
-C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfoInputs.cache
-C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfo.cs
-C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.csproj.CoreCompileInputs.cache
-C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.dll
-C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\refint\DTO.dll
-C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.pdb
-C:\Users\Gamer\Downloads\ambulatorio\Ambulatorio\APi\DTO\obj\Debug\net6.0\ref\DTO.dll
-C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\bin\Debug\net6.0\DTO.deps.json
-C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\bin\Debug\net6.0\DTO.dll
-C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\bin\Debug\net6.0\DTO.pdb
-C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.csproj.AssemblyReference.cache
-C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfoInputs.cache
-C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfo.cs
-C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.csproj.CoreCompileInputs.cache
-C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.dll
-C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\refint\DTO.dll
-C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.pdb
-C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\ref\DTO.dll
+C:\Users\nick2\Downloads\Ambulatorio\APi\DTO\bin\Debug\net6.0\DTO.deps.json
+C:\Users\nick2\Downloads\Ambulatorio\APi\DTO\bin\Debug\net6.0\DTO.dll
+C:\Users\nick2\Downloads\Ambulatorio\APi\DTO\bin\Debug\net6.0\DTO.pdb
+C:\Users\nick2\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.csproj.AssemblyReference.cache
+C:\Users\nick2\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nick2\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfoInputs.cache
+C:\Users\nick2\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.AssemblyInfo.cs
+C:\Users\nick2\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.csproj.CoreCompileInputs.cache
+C:\Users\nick2\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.dll
+C:\Users\nick2\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\refint\DTO.dll
+C:\Users\nick2\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\DTO.pdb
+C:\Users\nick2\Downloads\Ambulatorio\APi\DTO\obj\Debug\net6.0\ref\DTO.dll

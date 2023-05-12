@@ -11,18 +11,20 @@ public class Agenda
     public Medico Medico { get; set; }
     public User User { get; set; }
     public bool Aprovado { get; set; }
+    public int MedicoId { get; set; }
+    public int UserId { get; set; }
 
 
-    public int save()
+    public int save(AgendaDTO agenda)
     {
         using (var context = new Model.Context())
         {
-            Medico = context.Medico.FirstOrDefault(d=> d.Id == this.Medico.Id);
-            User = context.User.FirstOrDefault(d=> d.Id == this.User.Id);
+            Medico = context.Medico.FirstOrDefault(d=> d.Id == agenda.MedicoId);
+            User = context.User.FirstOrDefault(d=> d.Id == agenda.UserId);
             var obj = new Model.Agenda
             {
-                StartDate = this.StartDate,
-                EndDate = this.StartDate.AddMinutes(30),
+                StartDate = agenda.StartDate,
+                EndDate = agenda.EndDate,
                 Medico = Medico,
                 User = User,
                 Aprovado = false
@@ -73,7 +75,7 @@ public class Agenda
         using (var context = new Context())
         {
             Console.WriteLine(DateTime.Now);
-            var agenda = context.Agenda.Include(p => p.User).Include(p => p.Medico).Where(c => c.Medico.Id == id).Where(f => f.StartDate > DateTime.Now);
+            var agenda = context.Agenda.Include(p => p.User).Include(p => p.Medico).Where(c => c.Medico.Id == id);
             List<object> agendas = new List<object>();
 
             foreach (var item in agenda)
