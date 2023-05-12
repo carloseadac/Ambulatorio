@@ -34,6 +34,7 @@ import {
 import { EventColor } from 'calendar-utils';
 import { CalendarEventDto } from '../CalendarEventDto';
 import { shiftsDto } from '../shiftDto';
+import { end, start } from '@popperjs/core';
 
 const colors: Record<string, EventColor> = {
   blue: {
@@ -58,7 +59,7 @@ export class AgendaCalendarComponent implements OnInit{
 
   viewDate: Date = new Date();
 
-  shiftInfo!: shiftsDto[];
+  shiftInfo!: shiftsDto;
 
   modalData: {
     action: string;
@@ -243,6 +244,24 @@ export class AgendaCalendarComponent implements OnInit{
 
   }
 
+  // fetchEvents(){
+  //   this.events$ = this.agendasUser.map(events : CalendarEventDto) => {
+  //     this.events = this.events;
+  //     return{
+  //       id: this.events.Id,
+  //       title: this.events.Title,
+  //       start: new Date(this.events.Start),
+  //       end: new Date(this.events.End),
+  //       color: {...colors['blue']},
+  //       meta:{
+  //         this.events,
+  //       },
+  //       cssClass:'text-color'
+  //     }
+  //   }
+
+  // }
+
   async initialize() {
     this.todos();
   }
@@ -284,14 +303,12 @@ export class AgendaCalendarComponent implements OnInit{
         console.log(error);
       });
 
-
       var config1 = {
         method: 'get',
         url: 'http://localhost:5051/Shift/getAll/',
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('authMedico')},
         data: '',
       };
-
       var instance = this;
       axios(config1)
         .then(function (response) {
@@ -327,4 +344,37 @@ export class AgendaCalendarComponent implements OnInit{
     this.initialize();
   }
 
+  beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
+    if ( this.shiftInfo) {
+      console.log("Entrou")
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      let info = this.shiftInfo
+        const shiftstartDate = new Date(info.startDate);
+        const shiftEndDate = info.EndDate ? new Date (info.EndDate!) : null;
+        shiftstartDate.setHours(0, 0, 0, 0);
+        shiftEndDate?.setHours(0, 0, 0, 0);
+
+        renderEvent.hourColumns.forEach((hourColumn) => {
+          const calendarColumnDate = new Date (hourColumn.date);
+          const dayOfWeek = days[ calendarColumnDate.getDay() ];
+
+            if(calendarColumnDate >= shiftstartDate &&
+              (shiftEndDate === null || calendarColumnDate <= shiftEndDate) && 
+              (dayOfWeek === "Sunday" && info.Sunday ||
+              dayOfWeek === "Monday" && info.Monday ||
+              dayOfWeek === "Tuesday" && info.Tuesday ||
+              dayOfWeek === "Wednesday" && info.Wednesday ||
+              dayOfWeek === "Thursday" && info.Thursday ||
+              dayOfWeek === "Friday" && info.Friday ||
+              dayOfWeek === "Saturday" && info.Saturday)){
+                hourColumn.hours.forEach((hour) => {
+                hour.segments.forEach((segment) => {
+                segment.cssClass = 'bg-green';
+                });
+              })
+
+            }
+      });
+  }
+}
 }

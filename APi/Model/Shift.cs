@@ -21,6 +21,7 @@ public class Shift
     public int IdMedico { get; set; }
 
 
+<<<<<<< HEAD
     public int save(ShiftDTO shiftDto)
     {
         using (var context = new Model.Context())
@@ -39,6 +40,26 @@ public class Shift
                 Friday = shiftDto.Friday,
                 Saturday = shiftDto.Saturday,
                 Sunday = shiftDto.Sunday
+=======
+    public int save(Shift shiftDto)
+    {
+        using (var context = new Model.Context())
+        {
+            var medico = this.Medico;
+            context.Entry(medico).State = EntityState.Unchanged;
+            var obj = new Model.Shift
+            {
+                StartTime = this.StartTime,
+                EndTime = this.EndTime.AddMinutes(30),
+                Medico = medico,
+                Monday = this.Monday,
+                Tuesday = this.Tuesday,
+                Wednesday = this.Wednesday,
+                Thursday = this.Thursday,
+                Friday = this.Friday,
+                Saturday = this.Saturday,
+                Sunday = this.Sunday,
+>>>>>>> 311a8a81c9eda5a42df3ce9ad3e8b3c764784121
             };
             context.Shift.Add(obj);
             context.SaveChanges();
