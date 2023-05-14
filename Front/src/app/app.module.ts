@@ -18,6 +18,7 @@ import { AgendaListComponent } from './agenda-list/agenda-list.component';
 import { HomeComponent } from './home/home.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { ConsultasListComponent } from './consultas-list/consultas-list.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ConsultasListComponent } from './consultas-list/consultas-list.componen
     AgendaListComponent,
     HomeComponent,
     HomeAdminComponent,
-    ConsultasListComponent
+    ConsultasListComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { ConsultasListComponent } from './consultas-list/consultas-list.componen
       {path: 'agendalist', component: AgendaListComponent},
       {path: 'home', component: HomeComponent},
       {path: 'homeAdmin', component: HomeAdminComponent},
-      {path: 'consultaslist', component: ConsultasListComponent}
+      {path: 'consultaslist', component: ConsultasListComponent},
+      {path: 'profile', component: ProfileComponent}
     ])
   ],
   providers: [],
