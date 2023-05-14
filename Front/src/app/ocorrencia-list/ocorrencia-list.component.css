@@ -107,3 +107,22 @@ table{
 .modal-body select{
     margin-left: 5%;
 }
+.botao{
+    border-radius:7px ;
+    border:none;
+    background-color: rgb(42, 42, 116);
+    color: white;
+    margin: 3px;
+    scale: 0.6;
+    padding: 0;
+    margin: 0;
+}
+img{
+    scale: 0.5;
+}
+.filter{
+    border: solid 1px lightgrey;
+    border-radius: 10px;
+    width: 20vw;
+    outline: none;
+}

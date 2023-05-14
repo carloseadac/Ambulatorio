@@ -5,8 +5,7 @@
     <h2 style="margin-top: 4%;">Bem Vindo, [nome]</h2>
     <div class="row">
         <div class="col">
-            <div class="card" >
-
+            <div class="card 1"  (click)="agenda()">
                 <div class="card_title" >
                   <p>Agenda</p>
                   <img class="image-card" src="../../assets/icons/calendar-date-single.svg" alt="">
@@ -15,7 +14,7 @@
 
         </div>
         <div class="col">
-            <div class="card 1" >
+            <div class="card 1" (click)="consultas()" >
                 <div class="card_title title-white">
                   <p>Consultas Pendentes</p>
                   <img class="image-card" src="../../assets/icons/health-warning.svg" alt="">
@@ -24,7 +23,7 @@
 
         </div>
         <div class="col">
-            <div class="card 1" >
+            <div class="card 1"  (click)="ocorrenciahistorico()">
                 <div class="card_title title-white">
                   <p>Histórico</p>
                   <img class="image-card" src="../../assets/icons/history.svg" alt="">

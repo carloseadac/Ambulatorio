@@ -520,3 +520,7 @@ table {
 /* .aiaiaiuiui{
   margin-right:25px;
 } */
+input{
+  border-radius: 5px;
+  outline: none;
+}

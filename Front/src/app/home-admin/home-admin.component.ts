@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home-admin',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {
+    let self = this;
+   }
 
   ngOnInit(): void {
   }
-
+  ocorrenciahistorico(){
+    let self = this
+    self.router.navigate(['historico']);
+  }
+  agenda(){
+    let self = this
+    self.router.navigate(['agendalist']);
+  }
+  consultas(){
+    let self = this
+    self.router.navigate(['consultaslist']);
+  }
 }

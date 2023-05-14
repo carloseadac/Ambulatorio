@@ -3,9 +3,10 @@
   <div class="caixa-filtro">
     <div class="filtro">
       <h1>Filtro:</h1>
-      <input type="text" class="filter" id="EDV" placeholder="EDV"/>
-      <button (click)="filtro()">OK</button>
-      <button (click)="reset()">X</button>
+      
+      <input type="text" class="filter" id="EDV" placeholder="EDV" maxlenth="8"/>
+      <button class="botao" (click)="filtro()" ><img src="../../assets/icons/icons8-search.svg" alt=""> </button>
+      <button class="botao" (click)="reset()"> <img src="../../assets/icons/icons8-cancel.svg" alt=""> </button>
     </div>
   </div>
   <div class="tabela">

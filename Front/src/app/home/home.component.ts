@@ -22,5 +22,8 @@ export class HomeComponent implements OnInit {
     let self = this
     self.router.navigate(['historico']);
   }
-
+  agenda(){
+    let self = this
+    self.router.navigate(['agendalist']);
+  }
 }
