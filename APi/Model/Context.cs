@@ -48,7 +48,9 @@ public class Context : DbContext
             entity.Property(a =>a.Comprovante);
             entity.Property(a=>a.Documento);
             entity.HasOne(a=>a.Ocorrencias);
-            entity.HasOne(a => a.Usuario);
+            entity.HasOne(a => a.Usuario)
+            .WithMany()
+            .HasForeignKey(a => a.UsuarioId); ;
 
         });
         modelBuilder.Entity<User>(entity =>{
@@ -77,9 +79,10 @@ public class Context : DbContext
             entity.HasKey(a => a.Id);
             entity.Property(a => a.StartDate).IsRequired();
             entity.Property(a => a.EndDate).IsRequired();
+            entity.Property(a => a.Descricao).IsRequired();
             entity.HasOne(a => a.User)
             .WithMany()
-            .HasForeignKey(a => a.UserId);
+            .HasForeignKey(a => a.UserId).IsRequired(false);
             entity.HasOne(a => a.Medico)
             .WithMany()
             .HasForeignKey(a => a.MedicoId);

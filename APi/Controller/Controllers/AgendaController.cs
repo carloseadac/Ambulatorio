@@ -58,10 +58,10 @@ public class AgendaController : ControllerBase
     [HttpGet]
     [Route("getAllDay")]
 
-    public object getAllInformationsDay()
+    public IList<Agenda> getAllInformationsDay()
     {
         var id = Lib.GetIdFromRequest(Request.Headers["Authorization"].ToString());
-        var agendas = Model.Agenda.findAllDay(id);
+        var agendas = new Agenda().findAllDay(id);
         return agendas;
     }
 

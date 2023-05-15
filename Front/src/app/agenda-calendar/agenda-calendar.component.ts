@@ -38,6 +38,7 @@ import { EventColor } from 'calendar-utils';
 import { CalendarEventDto } from '../CalendarEventDto';
 import { shiftsDto } from '../shiftDto';
 import { end, start } from '@popperjs/core';
+import { Calendar } from '@bryntum/calendar';
 
 const colors: Record<string, EventColor> = {
   blue: {
@@ -79,7 +80,7 @@ export class AgendaCalendarComponent implements OnInit{
       },
     },
   ];
-
+  events: CalendarEventDto[]=[];
   events$: Observable<CalendarEvent<{ calendar: CalendarEventDto; }>[]> | undefined
 
   refresh = new Subject<void>();
@@ -125,8 +126,23 @@ export class AgendaCalendarComponent implements OnInit{
   //   },
   // ];
 
+   calendar = new Calendar({
+    features:{
+      eventEdit : {
+        readOnly : false
+    }
+    }
+  });
+  tbarConfig = {
+    items : [
+        {
+            type : 'button',
+            text : 'My button'
+        }
+    ]
+}
   activeDayIsOpen: boolean = true;
-
+  mostrarNgContainer: boolean = false;
   constructor(private modal: NgbModal,
     private router: Router) {
       this.adm = {
@@ -146,49 +162,69 @@ export class AgendaCalendarComponent implements OnInit{
         area: "",
         email: "",
         dataNasc: ""
-      }
+      } 
 
+      var config = {
+        method: 'get',
+        url: 'http://localhost:5051/Agenda/getAllDay/',
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('authMedico')},
+        data: '',
+      };
+      var instance = this;
+      axios(config)
+      .then(response => {
+        this.agendasUser = response.data; // Assumindo que a resposta contém os dados da agenda do usuário
+        console.log(this.agendasUser)
+        // this.agendasUser.forEach((item: AgendaUser) => {
+        //   console.log()
+        //   var i = new CalendarEventDto();
+        //   i.id = item.id;
+        //   console.log(i)
+        //   i.name = "consulta";
+        //   console.log(i)
+        //   i.startDate = item.startDate.toString();
+        //   console.log(i)
+        //   i.endDate = item.endDate.toString();
+        //   console.log(i)
+        //   instance.events.push(i);
+        // });
+  
+        console.log(instance.events);
+  
+        // let events = [];
+  
+        for (let k = 0; k < instance.agendasUser.length; k++) {
+          console.log(k)
+          var i : {id:number,name:string, startDate: string, endDate: string, resourceId:number}={
+            id: 0,
+            name:'',
+            startDate:'',
+            endDate:'',
+            resourceId:1
+          };
+          i.id = this.agendasUser[k].id;
+          i.name = "Consulta "+this.agendasUser[k].user.nome;
+          i.startDate = this.agendasUser[k].startDate.toString();
+          i.endDate = this.agendasUser[k].endDate.toString();
+  
+          this.eventos.push(i);
+        }
+        console.log(this.eventos)
+        console.log(instance.events.filter(x => x.resourceId));
+  
+      })
+          .catch(function (error) {
+            instance.events = error
+          });
       this.todos();
     }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
-      this.viewDate = date;
+    alertNatela($event: Event){
+      alert($event)
     }
-  }
-
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
-  }
-
-  addEvent(): void {
-    
-  }
-
-  deleteEvent(eventToDelete: CalendarEvent) {
-    // this.events = this.events.filter((event) => event !== eventToDelete);
-  }
-
-  setView(view: CalendarView) {
-    this.view = view;
-  }
-
-  closeOpenMonthViewDay() {
-    this.activeDayIsOpen = false;
-  }
 
 
-
-  agendasUser: Observable<AgendaUser> | undefined;
+  agendasUser: AgendaUser[]=[];
   dadoscorrencias: Array<Ocorrencias> = [];
 
   id : number = -1
@@ -196,7 +232,6 @@ export class AgendaCalendarComponent implements OnInit{
   caminho : string | null = "";
   adm : User
   medico : User
-
   idmedico: number = 0;
 
   ngOnInit(): void {
@@ -228,17 +263,9 @@ export class AgendaCalendarComponent implements OnInit{
     };
     axios(config4)
     .then(function (response:any) {
-      console.log(JSON.stringify(response.data));
       self2.medico = response.data;
       self2.idmedico= self2.medico.id;
-      console.log(self2.idmedico)
-
-      let dataNova = self2.adm.dataNasc.substring(0,10).toString();
-      let day = dataNova.substring(8,10).toString();
-      let month = dataNova.substring(5,7).toString();
-      let year = dataNova.substring(0,4).toString();
-      let dataCerta = day + month + year;
-
+      console.log(self2.idmedico);
     })
     .catch(function (error:any) {
       console.log(error);
@@ -248,65 +275,15 @@ export class AgendaCalendarComponent implements OnInit{
 
   }
 
-  // fetchEvents(){
-  //   this.events$ = this.agendasUser.map(events : CalendarEventDto) => {
-  //     this.events = this.events;
-  //     return{
-  //       id: this.events.Id,
-  //       title: this.events.Title,
-  //       start: new Date(this.events.Start),
-  //       end: new Date(this.events.End),
-  //       color: {...colors['blue']},
-  //       meta:{
-  //         this.events,
-  //       },
-  //       cssClass:'text-color'
-  //     }
-  //   }
-
-  // }
+  setTrue(truee: boolean){
+    this.mostrarNgContainer=true
+  }
 
   async initialize() {
     this.todos();
   }
 
-   fetchEvents(){
-    this.events$ = this.agendasUser!.pipe( map((results) => {
-      return results.results.value.map((events : CalendarEventDto) => {
-        return{
-          id: events.Id,
-          title: events.Title,
-          start: new Date(events.Start),
-          end: new Date(events.End),
-          color: {...colors['blue']},
-          meta:{
-            events,
-          },
-          cssClass:'text-color'
-        }})
-      }))
-    } 
-
-
   todos(){
-    var config = {
-      method: 'get',
-      url: 'http://localhost:5051/Agenda/getAllDay/',
-      headers: {'Authorization': 'Bearer ' + localStorage.getItem('authMedico')},
-      data: '',
-    };
-
-    var instance = this;
-    axios(config)
-      .then(function (response) {
-        instance.events$ = response.data
-        instance.events = response.data
-        instance.agendasUser = response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
       var config1 = {
         method: 'get',
         url: 'http://localhost:5051/Shift/getAll/',
@@ -317,7 +294,6 @@ export class AgendaCalendarComponent implements OnInit{
       axios(config1)
         .then(function (response) {
           instance.shiftInfo = response.data
-          console.log(instance.shiftInfo);
         })
         .catch(function (error) {
           console.log(error);
@@ -389,15 +365,16 @@ resources = [
   }
 ];
 
-events = [
+eventos = [
   {
       id         : 1,
       name       : 'Meeting',
-      startDate  : '2023-05-12T10:00:00',
-      endDate    : '2023-05-12T11:00:00',
+      startDate  : new Date().toISOString(),
+      endDate    : new Date().toISOString(),
       resourceId : 1
   }
 ];
+agenda : CalendarEventDto = this.eventos[0];
 
 calendarConfig = calendarConfig;
 projectConfig = projectConfig;

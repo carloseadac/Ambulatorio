@@ -19,12 +19,15 @@ import { HomeComponent } from './home/home.component';
 import { AgendaCalendarComponent } from './agenda-calendar/agenda-calendar.component';
 
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { BryntumCalendarModule } from '@bryntum/calendar-angular';
+import { HttpClientModule } from '@angular/common/http';
+import {MatFormFieldModule, MatFormFieldDefaultOptions, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { BryntumCalendarModule } from '@bryntum/calendar-angular';
     AgendaListComponent,
     HomeComponent,
     AgendaCalendarComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,9 @@ import { BryntumCalendarModule } from '@bryntum/calendar-angular';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
-    BryntumCalendarModule
+    BryntumCalendarModule,
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

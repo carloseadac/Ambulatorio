@@ -39,15 +39,22 @@
     >
     </mwl-calendar-week-view>
      -->
-     <bryntum-project-model
-     #project
-     [events] = "events"
-     [resources] = "resources"
- ></bryntum-project-model>
- <ng-container *ngIf="calendarConfig.date">
-  <bryntum-calendar
-  #calendar
-  [date] = "calendarConfig.date"
-  [project] = "project"
-></bryntum-calendar>
- </ng-container>
+     <button (click)="setTrue(true)"></button>
+     <ng-container *ngIf="mostrarNgContainer">   
+      <bryntum-project-model
+      #project
+      [events] = "eventos"
+      [resources] = "resources"
+      (click)="alertNatela($event)"
+      ></bryntum-project-model>
+      <ng-container *ngIf="calendarConfig.date">
+          <bryntum-calendar
+          #calendar
+          [eventEditFeature]="false"
+          [dragFeature] = "false"
+          [date] = "calendarConfig.date"
+          [project] = "project"
+          ></bryntum-calendar>
+      </ng-container>
+    <pre>{{events}}</pre>
+     </ng-container>

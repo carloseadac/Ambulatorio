@@ -60,7 +60,7 @@ public class ShiftController : ControllerBase
     public object getAllInformationsDay()
     {
         var id = Lib.GetIdFromRequest(Request.Headers["Authorization"].ToString());
-        var agendas = Model.Agenda.findAllDay(id);
+        var agendas = new Agenda().findAllDay(id);
         return agendas;
     }
 
@@ -70,6 +70,15 @@ public class ShiftController : ControllerBase
     public void approveWithId(int id)
     {
         Model.Agenda.updateApproved(id);
+    }
+
+    [HttpGet]
+    [Route("getAvailableTimes/{idMedico}/{data}")]
+
+    public List<TimeSpan> getAvailableTimes(int idMedico, DateTime data)
+    {
+        var times = new Shift().findAvailableTimes(idMedico, data);
+        return times;
     }
 
 

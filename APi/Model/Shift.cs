@@ -21,7 +21,6 @@ public class Shift
     public int IdMedico { get; set; }
 
 
-<<<<<<< HEAD
     public int save(ShiftDTO shiftDto)
     {
         using (var context = new Model.Context())
@@ -40,26 +39,6 @@ public class Shift
                 Friday = shiftDto.Friday,
                 Saturday = shiftDto.Saturday,
                 Sunday = shiftDto.Sunday
-=======
-    public int save(Shift shiftDto)
-    {
-        using (var context = new Model.Context())
-        {
-            var medico = this.Medico;
-            context.Entry(medico).State = EntityState.Unchanged;
-            var obj = new Model.Shift
-            {
-                StartTime = this.StartTime,
-                EndTime = this.EndTime.AddMinutes(30),
-                Medico = medico,
-                Monday = this.Monday,
-                Tuesday = this.Tuesday,
-                Wednesday = this.Wednesday,
-                Thursday = this.Thursday,
-                Friday = this.Friday,
-                Saturday = this.Saturday,
-                Sunday = this.Sunday,
->>>>>>> 311a8a81c9eda5a42df3ce9ad3e8b3c764784121
             };
             context.Shift.Add(obj);
             context.SaveChanges();
@@ -81,6 +60,58 @@ public class Shift
                 User = agendas.User
             };
         }
+    }
+    public List<TimeSpan> findAvailableTimes(int idMedico, DateTime data) { 
+        using (var context = new Context())
+        {
+            var consultas = context.Agenda.Where(x => x.StartDate > data.Date && x.EndDate < data.AddDays(1) && x.MedicoId == idMedico).ToList();
+            Console.WriteLine(consultas);
+            var shift = context.Shift.Where(c => c.Medico.Id == idMedico).FirstOrDefault();
+            TimeSpan startHour = new TimeSpan(shift.StartTime.Hour, shift.StartTime.Minute,0);
+            TimeSpan endHour = new TimeSpan(shift.EndTime.Hour, shift.EndTime.Minute, 0);
+
+            TimeSpan increment = new TimeSpan(0, 30, 0); // 30 minutes
+
+            List<TimeSpan> availableTimes = new List<TimeSpan>();
+
+            if (shift.Monday && data.DayOfWeek == DayOfWeek.Monday ||
+                shift.Tuesday && data.DayOfWeek == DayOfWeek.Tuesday ||
+                shift.Wednesday && data.DayOfWeek == DayOfWeek.Wednesday ||
+                shift.Thursday && data.DayOfWeek == DayOfWeek.Thursday ||
+                shift.Friday && data.DayOfWeek == DayOfWeek.Friday ||
+                shift.Saturday && data.DayOfWeek == DayOfWeek.Saturday ||
+                shift.Sunday && data.DayOfWeek == DayOfWeek.Sunday)
+            {
+                for (TimeSpan time = startHour; time < endHour; time += increment)
+                {
+                    if (consultas.Count() > 0)
+                    {
+                        foreach (Agenda consulta in consultas)
+                        {
+                            if (time >= consulta.StartDate.TimeOfDay && time <= consulta.EndDate.TimeOfDay ||
+                                time +increment >= consulta.StartDate.TimeOfDay && time + increment <= consulta.EndDate.TimeOfDay)
+                            {
+
+                            }
+                            else
+                            {
+                                availableTimes.Add(time);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        availableTimes.Add(time);
+                    }
+
+
+                }
+            }
+            
+
+            return availableTimes;
+        }
+        
     }
 
     public static object findAll(int id)

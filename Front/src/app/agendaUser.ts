@@ -6,10 +6,6 @@ export interface AgendaUser{
     startDate : Date,
     endDate : Date,
     aprovado : boolean,
-    ocorrencias : {
-        id : number,
-        nome : string
-    },
     user : {
         id : number,
         nome : string,
@@ -19,4 +15,10 @@ export interface AgendaUser{
         email : string,
         senha : string
     }
+}
+
+export class Ocorrencias{
+    id: number | undefined;
+    nome: string| undefined 
+
 }

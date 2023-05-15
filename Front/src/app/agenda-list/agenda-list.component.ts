@@ -93,6 +93,7 @@ export class AgendaListComponent implements OnInit{
     this.initialize();
 
   }
+  
 
   async initialize() {
     this.todos();

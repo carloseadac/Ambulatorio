@@ -5,5 +5,9 @@ export const projectConfig: Partial<ProjectModelConfig> = {
 };
 
 export const calendarConfig: Partial<CalendarConfig> = {
-    date : new Date()
+    date : new Date(),
+    features : {
+        eventEdit : false,
+
+    },
 };

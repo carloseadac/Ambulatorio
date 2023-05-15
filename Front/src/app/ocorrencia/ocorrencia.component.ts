@@ -6,6 +6,7 @@ import { User } from '../user';
 import jspdf from 'jspdf';
 import { event } from 'jquery';
 import { takeLast } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
 
 declare global {
   var tal : any;
@@ -29,6 +30,8 @@ export class OcorrenciaComponent implements OnInit {
   number : number = 0;
 
   gamb : Array<number> = []
+  parentForm!: FormGroup;
+  consultList!: object[]
 
   constructor(private router: Router) {
     
@@ -49,6 +52,7 @@ export class OcorrenciaComponent implements OnInit {
       email: "",
       dataNasc: ""
     }
+    
 
   }
 
@@ -215,58 +219,40 @@ export class OcorrenciaComponent implements OnInit {
     if(this.gamb[0]==5){
       let selectMedico = document.getElementById("medico") as HTMLSelectElement;
       let option = select.options[selectMedico.selectedIndex].value;
-      console.log(option)
-      let numbers = dataEntrada.value.split("-");
-      let hours= horaEntrada.value.split(":");
-      console.log(numbers);
-      this.newDataSaida.setDate(parseInt(numbers[2]));
-      this.newDataSaida.setFullYear(parseInt(numbers[0]));
-      this.newDataSaida.setMonth(parseInt(numbers[1])-1)
-      this.newDataSaida.setHours(parseInt(hours[0]))
-      this.newDataSaida.setMinutes(parseInt(hours[1])+30)
+      let selectHora = document.getElementById("hours") as HTMLSelectElement;
+      let optionHora = selectHora.options[selectHora.selectedIndex].value;
+      const [year, month, day] = dataEntrada.value.split('/');
+      const [hora, minutes, seconds] = optionHora.split(':');
+      var horaFinal = 0
+      var minutoFinal = "00"
+      if(minutes == "30"){
+        horaFinal = Number(hora)+1
+        minutoFinal = "00"
+      }
+      else{
+        horaFinal = Number(hora)
+        minutoFinal = "30"
+      }
       console.log(this.newDataSaida)
       var data = JSON.stringify({
-        "startDate": dataEntrada?.value + "T" + horaEntrada?.value + ":00.000Z",
-        "EndDate": this.newDataSaida,
-        "User":{
-          "id": this.userId,
-          "nome": "",
-          "edv": "",
-          "area": "",
-          "dataNasc": this.newDataSaida,
-          "email": "",
-          "senha": ""
-        },
-        "Medico":{
-          "id": option,
-          "nome": "",
-          "edv": "",
-          "area": "",
-          "dataNasc": this.newDataSaida,
-          "email": "",
-          "senha": ""
-        }  
+        "startDate": dataEntrada?.value + "T" + optionHora,
+        "EndDate": dataEntrada?.value + "T" + horaFinal + ":" + minutoFinal + ":00",
+        "UserId":this.userId,
+        "MedicoId":option
         
       })
+      console.log(data)
       var data2 = JSON.stringify({
-        "descricao": descricao?.value,
-        "dataEntrada": dataEntrada?.value + "T" + horaEntrada?.value + ":00.000Z",
-        "dataSaida": this.newDataSaida,
-        "documento": '',
-        "comprovante": comprovante,
-        "ocorrencias":{
+        "Descricao": "Consulta",
+        "DataEntrada": dataEntrada?.value + "T" + optionHora,
+        "DataSaida": dataEntrada?.value + "T" + horaFinal + ":" + minutoFinal + ":00",
+        "Documento": '',
+        "Comprovante": comprovante,
+        "Ocorrencias":{
           "id": options.value,
           "nome": "Consulta"
         },
-        "usuario":{
-          "id": this.userId,
-          "nome": "",
-          "edv": "",
-          "area": "",
-          "dataNasc": this.newDataSaida,
-          "email": "",
-          "senha": ""
-        } 
+        "UsuarioId":this.userId,
         
       })
 
@@ -288,9 +274,10 @@ export class OcorrenciaComponent implements OnInit {
         alert("Erro Genérico!");
         console.log(error);
       });
+      console.log(data2)
       var config = {
         method: 'post',
-        url: 'http://localhost:5051/Ocorrencia/register',
+        url: 'http://localhost:5051/Ocorrencia/registrar',
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -386,6 +373,64 @@ export class OcorrenciaComponent implements OnInit {
 
     
   }
+  showHour(){
+    setTimeout(() => {
+      let date = new Date(),
+    day = date.getDate(),
+    month = date.getMonth() + 1,
+    year = date.getFullYear();
+
+    var monthText = "";
+    var dayText = "";
+
+    if (month < 10) {
+      monthText = "0" + month;
+    }
+    else{
+      monthText = month.toString()
+    }
+    if (day < 10) {
+      dayText = "0" + day;
+    }
+    else{
+      dayText = day.toString()
+    }
+
+    const todayDate = `${year}-${monthText}-${dayText}`;
+    console.log(todayDate)
+
+    var documento = (document.getElementById('dateE')as HTMLInputElement).value = todayDate;
+    this.getAvailableTimes()
+    }, 2000);
+    
+  }
+
+  getAvailableTimes(){
+    let select = document.getElementById("medico") as HTMLSelectElement;
+    let option = select.options[select.selectedIndex];
+    let idMedico = option.value
+
+    var data = (document.getElementById('dateE')as HTMLInputElement).value
+    var config = {
+      method: 'get',
+      url: 'http://localhost:5051/Shift/getAvailableTimes/'+idMedico+'/'+data,
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : ''
+    };
+    let self4 = this;
+    axios(config)
+    .then(function (response) {
+     self4.consultList=response.data
+      
+    })
+    .catch(function (error) {
+      console.log(data)
+      alert("Erro Genérico!");
+      console.log(error);
+    }); 
+  }
 
 
 
@@ -436,6 +481,7 @@ export class OcorrenciaComponent implements OnInit {
     }
     else if(option.text == "Consulta"){
       this.gamb[0] = 5;
+      this.showHour();
     }
     else{
       this.gamb[0] = 0;

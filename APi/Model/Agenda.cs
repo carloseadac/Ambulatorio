@@ -9,10 +9,12 @@ public class Agenda
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public Medico Medico { get; set; }
-    public User User { get; set; }
+    public User? User { get; set; }
     public bool Aprovado { get; set; }
     public int MedicoId { get; set; }
-    public int UserId { get; set; }
+    public int? UserId { get; set; }
+    public string Descricao { get; set; }
+
 
 
     public int save(AgendaDTO agenda)
@@ -21,13 +23,15 @@ public class Agenda
         {
             Medico = context.Medico.FirstOrDefault(d=> d.Id == agenda.MedicoId);
             User = context.User.FirstOrDefault(d=> d.Id == agenda.UserId);
+            context.Entry(Medico).State = EntityState.Unchanged;
             var obj = new Model.Agenda
             {
                 StartDate = agenda.StartDate,
                 EndDate = agenda.EndDate,
-                Medico = Medico,
-                User = User,
-                Aprovado = false
+                Descricao = agenda.Descricao,
+                MedicoId = agenda.MedicoId,
+                UserId = User == null ? 1 : agenda.UserId,
+                Aprovado = agenda.IsApproved
             };
             context.Agenda.Add(obj);
             context.SaveChanges();
@@ -70,23 +74,15 @@ public class Agenda
             return agendas;
         }
     }
-    public static List<object> findAllDay(int id)
+    public IList<Agenda> findAllDay(int id)
     {
         using (var context = new Context())
         {
             Console.WriteLine(DateTime.Now);
-            var agenda = context.Agenda.Include(p => p.User).Include(p => p.Medico).Where(c => c.Medico.Id == id);
-            List<object> agendas = new List<object>();
+            var agenda = context.Agenda.Include(p => p.User).Include(p => p.Medico).Where(c => c.Medico.Id == id).ToList();
+            Console.WriteLine(agenda);
 
-            foreach (var item in agenda)
-            {
-                // User = context.User.Where(d=> d.id == item.user.id);
-                // item.user = User;
-                agendas.Add(item);
-                Console.WriteLine(item);
-            }
-
-            return agendas;
+            return agenda;
         }
     }
 

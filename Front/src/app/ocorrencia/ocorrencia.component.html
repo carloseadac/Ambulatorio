@@ -17,29 +17,33 @@
         </div>
 
         <div class="inputsRegister">
-            <select id="ocorrencia" class="form-select form-select" aria-label="Default select example" (blur)="pegaValor()">
+            <select id="ocorrencia" class="form-select form-select" aria-label="Default select example" (change)="pegaValor()">
                 <option selected>Selecione o tipo de ocorrencia</option>
                 <option *ngFor="let ocorrencia of ocorrencias" value="{{ocorrencia.id}}">{{ocorrencia.nome}}</option>
               </select>
         </div>
         <div class="inputsRegister" *ngIf="gamb[0]==5">
-            <select id="medico" class="form-select form-select" aria-label="Default select example" (blur)="pegaValor()">
-                <option selected>Selecione o tipo de ocorrencia</option>
+            <select id="medico" class="form-select form-select" aria-label="Default select example" (change)="pegaValor()">
+                <option selected>Selecione o Médico</option>
                 <option *ngFor="let medico of medicos" value="{{medico.id}}">{{medico.nome}} - {{medico.area}}</option>
               </select>
         </div>
 
-        <div class="inputsRegister">
-            <div class="inputsRegisterData">
+        <div class="inputsRegister row">
+            <div class="inputsRegisterData col-md-6">
                 <input *ngIf="gamb[0] != 3 && gamb[0] != 5" type="text" id="dateE" placeholder="Data Entrada" onfocus="(this.type='date')"/>
-                <input *ngIf="gamb[0] == 5" type="text" id="dateE" placeholder="Data Consulta" onfocus="(this.type='date')"/>
+                <input  *ngIf="gamb[0] == 5" type="date" id="dateE" placeholder="Data Consulta" (change)="getAvailableTimes()" class="w-100"/>
                 <input *ngIf="gamb[0] == 3"  disabled type="text" id="dateE" placeholder="Data Entrada" onfocus="(this.type='date')"/>
             </div>
 
-            <div class="inputsRegisterHora">
+            <div class="inputsRegisterHora col-md-6">
                 <input *ngIf="gamb[0] == 1 || gamb[0] == 3 "  disabled type="text" id="horaE" value="00:00" placeholder="Hora Entrada" onfocus="(this.type='time')"/>
                 <input *ngIf="gamb[0] != 1 && gamb[0] != 3 && gamb[0] != 5 " type="text" id="horaE" placeholder="Hora Entrada" onfocus="(this.type='time')"/>
-                <input *ngIf="gamb[0] == 5" type="text" id="horaE" placeholder="Hora Consulta" onfocus="(this.type='time')"/>
+                <select *ngIf="this.gamb[0] ==5" id="hours" class="form-select form-select w-100" aria-label="Default select example">
+                    <option selected *ngIf="consultList.length == 0">Não há horarios</option>
+                    <option selected *ngIf="consultList.length > 0">Selecione a Hora</option>
+                    <option *ngFor="let hora of consultList" value="{{hora}}">{{hora}}</option>
+                  </select>
             </div>
         </div>
 
@@ -55,7 +59,7 @@
             </div>
         </div>
  
-         <div class="inputsRegister">
+         <div *ngIf="gamb[0]!=5" class="inputsRegister">
              <input type="text" id="descricao" placeholder="Descrição" />
          </div>
 
