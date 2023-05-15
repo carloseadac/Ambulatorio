@@ -25,4 +25,8 @@ export class TopBarComponent implements OnInit {
     localStorage.removeItem('authToken');
   }
 
+  back(){
+    window.history.back()
+  }
+
 }

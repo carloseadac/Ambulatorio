@@ -130,8 +130,11 @@ export class AgendaCalendarComponent implements OnInit{
     features:{
       eventEdit : {
         readOnly : false
-    }
-    }
+    },
+    
+    },
+    width  :'100%', // = 800px
+    height : '100%'
   });
   tbarConfig = {
     items : [
@@ -209,8 +212,7 @@ export class AgendaCalendarComponent implements OnInit{
   
           this.eventos.push(i);
         }
-        console.log(this.eventos)
-        console.log(instance.events.filter(x => x.resourceId));
+
   
       })
           .catch(function (error) {
@@ -272,11 +274,13 @@ export class AgendaCalendarComponent implements OnInit{
     });
 
     this.initialize();
-
+    setTimeout(() => {
+      this.setTrue(true)
+    }, 2000);
   }
 
   setTrue(truee: boolean){
-    this.mostrarNgContainer=true
+    this.mostrarNgContainer= true
   }
 
   async initialize() {
@@ -303,6 +307,7 @@ export class AgendaCalendarComponent implements OnInit{
   pegaId(id : number){
     this.idPegado = id;
   }
+
 
   approve(){
     var instance = this
