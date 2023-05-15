@@ -5,10 +5,15 @@ using DTO;
 namespace Controller.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("Ocorrencia")]
 public class OcorrenciaController : ControllerBase
 {
+    public IConfiguration _configuration;
 
+    public OcorrenciaController(IConfiguration config)
+    {
+        _configuration = config;
+    }
 
     [HttpGet]
     [Route("getAll")]
@@ -38,11 +43,9 @@ public class OcorrenciaController : ControllerBase
     
 
     [HttpPost]
-    [Route("register")]
-    public object OccurrenceRegister([FromBody] Ocorrencia ocorrencia){
-        ocorrencia.DataSaida=ocorrencia.DataSaida.AddMinutes(-180);
-        Console.WriteLine(ocorrencia.DataSaida);
-        var Id = ocorrencia.save(ocorrencia.Usuario.Id, ocorrencia.Ocorrencias.Id);
+    [Route("registrar")]
+    public object OccurrenceRegister([FromBody] OcorrenciaDTO ocorrencia){
+        var Id = new Ocorrencia().save(ocorrencia.UsuarioId, ocorrencia.Ocorrencias.Id, ocorrencia);
         return new{
             Id = Id,
             Descricao = ocorrencia.Descricao,

@@ -19,6 +19,18 @@ import { HomeComponent } from './home/home.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { ConsultasListComponent } from './consultas-list/consultas-list.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AgendaCalendarComponent } from './agenda-calendar/agenda-calendar.component';
+
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { BryntumCalendarModule } from '@bryntum/calendar-angular';
+import { HttpClientModule } from '@angular/common/http';
+import {MatFormFieldModule, MatFormFieldDefaultOptions, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -35,7 +47,9 @@ import { ProfileComponent } from './profile/profile.component';
     HomeComponent,
     HomeAdminComponent,
     ConsultasListComponent,
-    ProfileComponent
+    ProfileComponent,
+    AgendaCalendarComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -53,8 +67,20 @@ import { ProfileComponent } from './profile/profile.component';
       {path: 'home', component: HomeComponent},
       {path: 'homeAdmin', component: HomeAdminComponent},
       {path: 'consultaslist', component: ConsultasListComponent},
-      {path: 'profile', component: ProfileComponent}
-    ])
+      {path: 'profile', component: ProfileComponent},
+      {path: 'agendacalendar', component: AgendaCalendarComponent}
+    ]),
+    CommonModule,
+    FormsModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    BryntumCalendarModule,
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

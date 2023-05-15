@@ -9,23 +9,29 @@ public class Agenda
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public Medico Medico { get; set; }
-    public User User { get; set; }
+    public User? User { get; set; }
     public bool Aprovado { get; set; }
+    public int MedicoId { get; set; }
+    public int? UserId { get; set; }
+    public string Descricao { get; set; }
 
 
-    public int save()
+
+    public int save(AgendaDTO agenda)
     {
         using (var context = new Model.Context())
         {
-            Medico = context.Medico.FirstOrDefault(d=> d.Id == this.Medico.Id);
-            User = context.User.FirstOrDefault(d=> d.Id == this.User.Id);
+            Medico = context.Medico.FirstOrDefault(d=> d.Id == agenda.MedicoId);
+            User = context.User.FirstOrDefault(d=> d.Id == agenda.UserId);
+            context.Entry(Medico).State = EntityState.Unchanged;
             var obj = new Model.Agenda
             {
-                StartDate = this.StartDate,
-                EndDate = this.StartDate.AddMinutes(30),
-                Medico = Medico,
-                User = User,
-                Aprovado = false
+                StartDate = agenda.StartDate,
+                EndDate = agenda.EndDate,
+                Descricao = agenda.Descricao,
+                MedicoId = agenda.MedicoId,
+                UserId = User == null ? 1 : agenda.UserId,
+                Aprovado = agenda.IsApproved
             };
             context.Agenda.Add(obj);
             context.SaveChanges();
@@ -62,9 +68,21 @@ public class Agenda
                 // User = context.User.Where(d=> d.id == item.user.id);
                 // item.user = User;
                 agendas.Add(item);
+                Console.WriteLine(item);
             }
 
             return agendas;
+        }
+    }
+    public IList<Agenda> findAllDay(int id)
+    {
+        using (var context = new Context())
+        {
+            Console.WriteLine(DateTime.Now);
+            var agenda = context.Agenda.Include(p => p.User).Include(p => p.Medico).Where(c => c.Medico.Id == id).ToList();
+            Console.WriteLine(agenda);
+
+            return agenda;
         }
     }
 

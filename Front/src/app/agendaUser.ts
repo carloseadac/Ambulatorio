@@ -1,13 +1,11 @@
 import { Time } from "@angular/common"
 
 export interface AgendaUser{
+    results: any
     id : number,
     startDate : Date,
     endDate : Date,
-    ocorrencias : {
-        id : number,
-        nome : string
-    },
+    aprovado : boolean,
     user : {
         id : number,
         nome : string,
@@ -17,4 +15,10 @@ export interface AgendaUser{
         email : string,
         senha : string
     }
+}
+
+export class Ocorrencias{
+    id: number | undefined;
+    nome: string| undefined 
+
 }

@@ -23,12 +23,11 @@ public class AgendaController : ControllerBase
 
     [HttpPost]
     [Route("register")]
-    public object registerAgenda([FromBody] Agenda agenda){
-        var Id = agenda.save();
+    public object registerAgenda([FromBody] AgendaDTO agenda){
+        var Id = new Agenda().save(agenda);
         return new{
             StartDate = agenda.StartDate,
             EndDate = agenda.EndDate,
-            Medico = agenda.Medico.Nome,
             Id = Id
 
         };
@@ -53,6 +52,16 @@ public class AgendaController : ControllerBase
     {
         var id = Lib.GetIdFromRequest(Request.Headers["Authorization"].ToString());
         var agendas = Model.Agenda.findAll(id);
+        return agendas;
+    }
+
+    [HttpGet]
+    [Route("getAllDay")]
+
+    public IList<Agenda> getAllInformationsDay()
+    {
+        var id = Lib.GetIdFromRequest(Request.Headers["Authorization"].ToString());
+        var agendas = new Agenda().findAllDay(id);
         return agendas;
     }
 

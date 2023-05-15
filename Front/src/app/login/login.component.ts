@@ -94,7 +94,6 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('authMedico',response.data);
       localStorage.removeItem('authToken');
       localStorage.removeItem('authOwner');
-      alert('oiiiii')
       self.router.navigate(['ocorrenciaslist']);
     })
     .catch(function (error:any) {

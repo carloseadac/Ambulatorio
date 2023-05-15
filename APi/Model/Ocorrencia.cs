@@ -13,18 +13,19 @@ public class Ocorrencia
     public string Documento { get; set; }
     public Ocorrencias Ocorrencias { get; set; }
     public User Usuario {get; set;}
+    public int UsuarioId { get; set; }
 
 
-    public int save(int userId, int ocorrenciaId){
+    public int save(int userId, int ocorrenciaId, OcorrenciaDTO ocorrencia){
         using(var context = new Model.Context()){
             var ocorrencias = context.Ocorrencias.FirstOrDefault(o => o.Id == ocorrenciaId);
             var usuario = context.User.FirstOrDefault(o => o.Id == userId);
             var obj = new Model.Ocorrencia{
-                Descricao = this.Descricao,
-                DataEntrada = this.DataEntrada,
-                DataSaida = this.DataSaida,
-                Comprovante = this.Comprovante,
-                Documento = this.Documento,
+                Descricao = ocorrencia.Descricao,
+                DataEntrada = ocorrencia.DataEntrada,
+                DataSaida = ocorrencia.DataSaida,
+                Comprovante = ocorrencia.Comprovante,
+                Documento = ocorrencia.Documento,
                 Ocorrencias = ocorrencias,
                 Usuario = usuario
             };

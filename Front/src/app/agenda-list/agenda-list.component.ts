@@ -63,33 +63,6 @@ export class AgendaListComponent implements OnInit{
 
     let self2 = this;
 
-    var config3 = {
-      method: 'get',
-      url: 'http://localhost:5051/adm/getById',
-      headers: { 
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('authOwner')
-      },
-      data : data3
-    };
-    axios(config3)
-    .then(function (response:any) {
-      console.log(JSON.stringify(response.data));
-      self2.adm = response.data;
-
-      let dataNova = self2.adm.dataNasc.substring(0,10).toString();
-      let day = dataNova.substring(8,10).toString();
-      let month = dataNova.substring(5,7).toString();
-      let year = dataNova.substring(0,4).toString();
-      let dataCerta = day + month + year;
-
-      self2.verificaPrimeiro(dataCerta, self2.adm.senha);
-
-    })
-    .catch(function (error:any) {
-      console.log(error);
-    });
-
     var config4 = {
       method: 'get',
       url: 'http://localhost:5051/medico/getById',
@@ -120,10 +93,10 @@ export class AgendaListComponent implements OnInit{
     this.initialize();
 
   }
+  
 
   async initialize() {
     this.todos();
-    this.tiposOcorrencias();
   }
 
   // dadosUser(descricoes : string, ocorrenciaId : number, data1 : Date, data2 : Date, horaE : string, horaS : string){
@@ -150,33 +123,6 @@ export class AgendaListComponent implements OnInit{
   //   this.id = ocorrenciaId
   // }
 
-  mandaDoc(documento : string){
-    this.caminho = documento;
-  }
-
-  tiposOcorrencias(){
-    var config = {
-      method: 'get',
-      url: 'http://localhost:5051/Ocorrencias/getAll',
-      headers: {},
-      data: '',
-    };
-
-    var instance = this;
-    axios(config)
-      .then(function (response) {
-        instance.dadoscorrencias = response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
-  verificaPrimeiro(data : string, senha: string){
-    if(data == senha){
-      this.router.navigate(['trocarSenha']);
-    }
-  }
 
   todos(){
     var config = {
