@@ -8,4 +8,8 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DTO
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\Aluno\Downloads\Ambulatorio\APi\DTO\
+=======
+build_property.ProjectDir = c:\Users\faj2ct\Desktop\Ambulatorio\APi\DTO\
+>>>>>>> 88b53193684cba0cad16a18ca23ec442df0e2cb8
