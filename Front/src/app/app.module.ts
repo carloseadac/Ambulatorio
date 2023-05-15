@@ -16,6 +16,9 @@ import { PrimeiroAcessoComponent } from './primeiro-acesso/primeiro-acesso.compo
 import { RegisterAdmComponent } from './register-adm/register-adm.component';
 import { AgendaListComponent } from './agenda-list/agenda-list.component';
 import { HomeComponent } from './home/home.component';
+import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { ConsultasListComponent } from './consultas-list/consultas-list.component';
+import { ProfileComponent } from './profile/profile.component';
 import { AgendaCalendarComponent } from './agenda-calendar/agenda-calendar.component';
 
 import { CommonModule } from '@angular/common';
@@ -42,6 +45,9 @@ import { MatInputModule } from '@angular/material/input';
     RegisterAdmComponent,
     AgendaListComponent,
     HomeComponent,
+    HomeAdminComponent,
+    ConsultasListComponent,
+    ProfileComponent,
     AgendaCalendarComponent
     
   ],
@@ -59,6 +65,9 @@ import { MatInputModule } from '@angular/material/input';
       {path: 'registerAdm', component: RegisterAdmComponent},
       {path: 'agendalist', component: AgendaListComponent},
       {path: 'home', component: HomeComponent},
+      {path: 'homeAdmin', component: HomeAdminComponent},
+      {path: 'consultaslist', component: ConsultasListComponent},
+      {path: 'profile', component: ProfileComponent},
       {path: 'agendacalendar', component: AgendaCalendarComponent}
     ]),
     CommonModule,

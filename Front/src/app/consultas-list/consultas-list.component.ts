@@ -7,11 +7,11 @@ import { DatePipe, Time } from '@angular/common';
 import { User } from '../user';
 
 @Component({
-  selector: 'app-ocorrencia-list',
-  templateUrl: './ocorrencia-list.component.html',
-  styleUrls: ['./ocorrencia-list.component.css']
+  selector: 'app-consultas-list',
+  templateUrl: './consultas-list.component.html',
+  styleUrls: ['./consultas-list.component.css']
 })
-export class OcorrenciaListComponent implements OnInit{
+export class ConsultasListComponent implements OnInit {
   ocorrencias: Array<OcorrenciasUser> = [];
   dadoscorrencias: Array<Ocorrencias> = [];
 
@@ -21,7 +21,7 @@ export class OcorrenciaListComponent implements OnInit{
   adm : User
   medico : User
 
-  constructor(private router: Router) { 
+  constructor(private router: Router) {
     this.adm = {
       id : 0,
       nome : "",
@@ -40,23 +40,11 @@ export class OcorrenciaListComponent implements OnInit{
       email: "",
       dataNasc: ""
     }
-  }
+   }
 
   ngOnInit(): void {
     let self = this;
-    // if(localStorage.getItem("authOwner") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authMedico") == null ){
-    //   self.router.navigate(["/"])
-    // }
-    // if(localStorage.getItem("authToken") != null){
-    //   self.router.navigate(["/"])
-    // }
-    // if(localStorage.getItem("authMedico") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authOwner") == null){
-    //   self.router.navigate(["/"])
-    // }
-
-    var data3 = JSON.stringify({
-      
-    });
+    var data3 = JSON.stringify({});
 
     let self2 = this;
 
@@ -113,7 +101,6 @@ export class OcorrenciaListComponent implements OnInit{
     });
 
     this.initialize();
-
   }
 
   async initialize() {
