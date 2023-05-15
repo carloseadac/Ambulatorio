@@ -27,4 +27,8 @@ export class HomeAdminComponent implements OnInit {
     let self = this
     self.router.navigate(['consultaslist']);
   }
+  perfil(){
+    let self = this
+    self.router.navigate(['profile']);
+  }
 }
