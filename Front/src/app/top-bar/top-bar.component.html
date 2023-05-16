@@ -38,6 +38,7 @@
             <li class="nav-item ">
               <img class="js-o-header__logo o-header__logo" src="../../assets/icons/edit-pencil-svgrepo-com.svg"/>
             </li>
+            <button (click)="setTrue(true)" *ngIf="url=='http://localhost:4200/agendacalendar'">Mostrar calendario</button>
             <li class="nav-item ">
               <a  class="nav-link"  [routerLink]="['']" (click)="sair()">Sair</a>
             </li>

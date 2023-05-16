@@ -11,6 +11,9 @@ export class TopBarComponent implements OnInit {
   authToken : string | null;
   authOwner : string | null;
 
+  url = ""
+  mostrarNgContainer: boolean = false;
+
   constructor(private router: Router) {
     this.authToken = localStorage.getItem("authToken");
     this.authOwner = localStorage.getItem("authOwner");
@@ -18,6 +21,13 @@ export class TopBarComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+    this.url = window.location.href
+    console.log(this.url)
+  }
+
+  setTrue(truee: boolean){
+    this.mostrarNgContainer= true
   }
 
   sair(){

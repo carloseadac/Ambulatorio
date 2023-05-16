@@ -2,7 +2,7 @@
 
 
 <div class="container">
-    <h2 style="margin-top: 4%;">Bem Vindo, [nome]</h2>
+    <h2 style="margin-top: 4%;">Bem Vindo, {{user.nome}}</h2>
     <div class="row">
         <div class="col">
             <div class="card 1"  (click)="agenda()">
@@ -32,7 +32,7 @@
 
         </div>
         <div class="col">
-          <div class="card 1" (click)="perfil()" >
+          <div class="card 1 " (click)="profile()">
               <div class="card_title title-white">
                 <p>Perfil</p>
                 <img class="image-card" src="../../assets/icons/my-brand-frame.svg" alt="">
