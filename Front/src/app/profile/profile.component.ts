@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { Shift } from '../shift';
 import { User } from '../user';
+import { Medico } from '../medico'
 
 @Component({
   selector: 'app-profile',
@@ -10,9 +11,10 @@ import { User } from '../user';
 })
 export class ProfileComponent implements OnInit {
 
-  medico! : User
   shift : Shift;
   startDate = ''
+  medico : Medico;
+  userId : number;
 
   constructor() { 
     this.shift = {
@@ -26,6 +28,17 @@ export class ProfileComponent implements OnInit {
       Friday: true,
       Saturday: true,
       Sunday: true
+    }
+    this.userId = 0;
+
+    this.medico = {
+      id : this.userId,
+      nome: "",
+      edv: "",
+      senha: "",
+      area: "",
+      email: "",
+      dataNasc: ""
     }
   }
 
@@ -70,6 +83,10 @@ export class ProfileComponent implements OnInit {
     .catch(function (error:any) {
       console.log(error);
     });
+
+
+     
+
   }
 
 }
