@@ -235,6 +235,7 @@ export class OcorrenciaComponent implements OnInit {
       }
       console.log(this.newDataSaida)
       var data = JSON.stringify({
+        "Descricao": "Consulta",
         "startDate": dataEntrada?.value + "T" + optionHora,
         "EndDate": dataEntrada?.value + "T" + horaFinal + ":" + minutoFinal + ":00",
         "UserId":this.userId,
@@ -264,6 +265,7 @@ export class OcorrenciaComponent implements OnInit {
         },
         data : data
       };
+      console.log(data)
       axios(config1)
       .then(function (response) {
         alert("Registrado com sucesso!");

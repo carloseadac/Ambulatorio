@@ -1,6 +1,6 @@
 <app-top-bar></app-top-bar>
 
-<div class="container-profile">
+<!-- <div class="container-profile">
     <label  class="name">Nome:  </label>
     <label  class="email">Email: </label>
     <label  class="phone">Telefone:  </label>
@@ -8,10 +8,125 @@
     <label  class="document">CPF: </label>
     <label  class="document">CRM:  </label>
     <label  class="document">Especialidade: </label>
-</div>
+
 <div class="photo"></div>
+<div class="d-flex text-end">
+<div class="col-md-7 text-end">
+    <div class="row text-end">
+        <div class="col-md-6">
+          <label>Dia de inicio: </label>
+          <input
+            type="date"
+            value="Shift.StartTime" 
+          />
+          <label>Horario de inicio: </label>
+          <input
+            type="time"
+          />
+        </div>
+        <div class="col-md-6">
+          <label>Dia de fim: </label>
+          <input
+            type="date"
+          />
+          <label>Horario de fim: </label>
+          <input
+            type="time"
+          />
+        </div>
+      
+      <hr />
+      <div class="d-flex justify-content-between">
+        <strong>Dias de trabalho</strong>
+        <section>
+          <input type="checkbox" class="mx-1" id="domingo" name="domingo"><label for="domingo">Domingo</label>
+          <input type="checkbox" class="mx-2" id="segunda" name="segunda"><label for="domingo">Segunda-feira</label>
+          <input type="checkbox" class="mx-2" id="terca" name="terca"><label for="domingo">Terça-feira</label>
+          <input type="checkbox" class="mx-2" id="quarta" name="quarta"><label for="quarta">Quarta-feira</label>
+          <input type="checkbox" class="mx-2" id="quinta" name="quinta"><label for="quinta">Quinta-feira</label>
+          <input type="checkbox" class="mx-2" id="sexta" name="sexta"><label for="sexta">Sexta-feira</label>
+          <input type="checkbox" class="mx-2" id="sabado" name="sabado"><label for="sabado">Sabado</label>
+        </section>
+      </div>
+    </div>
+    
+</div>
+</div>
+
 <div class="button-bar">
+<<<<<<< HEAD
     <div  class="button-list"><button >Alterar Perfil</button></div>
     <div  class="button-list"><button [routerLink]="['/client/purchasedetails']">Calendário</button></div>
-    <div class="button-list"><button [routerLink]="['/login']">Logout</button></div>
+    <div class="button-list"><button>Logout</button></div>
+</div> -->
+<div class="container">
+    <header class="cabecalho">
+        <div class="perfil">
+            <img class="perfil-foto" src="../../assets/icons/perfilpreto.svg">
+            <div class="titulo">
+                <h1>[Nome]</h1>
+                <h3>[Area]</h3>
+            </div>
+        </div>
+    </header>
+    <main class="projetos">
+        <div>
+            <h2>Informações Gerais</h2>
+            <ul id="lista">
+                <li>Nome: [Nome]</li>
+                <li>Email: [Email]</li>
+                <li>Telefone: [Telefone]</li>
+                <li>Data de nascimento: [Data]</li>
+                <li>CPF: [CPF]</li>
+                <li>CRM: [CRM]</li>
+                <li>Especialidade: [Especialidade]</li>
+            </ul>
+        </div>
+        <div class="d-flex text-end">
+          <div class="col-md-7 text-end">
+              <div class="row text-end">
+                  <div class="col-md-6">
+                    <label>Dia de inicio: </label>
+                    <input
+                      type="date"
+                      value="Shift.StartTime" 
+                    />
+                    <label>Horario de inicio: </label>
+                    <input
+                      type="time"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label>Dia de fim: </label>
+                    <input
+                      type="date"
+                    />
+                    <label>Horario de fim: </label>
+                    <input
+                      type="time"
+                    />
+                  </div>
+                
+                <hr />
+                <div class="d-flex justify-content-between">
+                  <strong>Dias de trabalho</strong>
+                  <section>
+                    <input type="checkbox" class="mx-1" id="domingo" name="domingo"><label for="domingo">Domingo</label>
+                    <input type="checkbox" class="mx-2" id="segunda" name="segunda"><label for="domingo">Segunda-feira</label>
+                    <input type="checkbox" class="mx-2" id="terca" name="terca"><label for="domingo">Terça-feira</label>
+                    <input type="checkbox" class="mx-2" id="quarta" name="quarta"><label for="quarta">Quarta-feira</label>
+                    <input type="checkbox" class="mx-2" id="quinta" name="quinta"><label for="quinta">Quinta-feira</label>
+                    <input type="checkbox" class="mx-2" id="sexta" name="sexta"><label for="sexta">Sexta-feira</label>
+                    <input type="checkbox" class="mx-2" id="sabado" name="sabado"><label for="sabado">Sabado</label>
+                  </section>
+                </div>
+              </div>
+          </div>
+        </div>
+    </main>
+    <div class="button-bar">
+      <button> Logout <span>&nbsp;</span> <img src="../../assets/icons/exit.svg"></button>
+    </div>
 </div>
+
+

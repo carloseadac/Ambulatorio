@@ -195,7 +195,7 @@ export class AgendaCalendarComponent implements OnInit{
         console.log(instance.events);
   
         // let events = [];
-  
+        this.eventos.pop()
         for (let k = 0; k < instance.agendasUser.length; k++) {
           console.log(k)
           var i : {id:number,name:string, startDate: string, endDate: string, resourceId:number}={
@@ -373,7 +373,7 @@ resources = [
 eventos = [
   {
       id         : 1,
-      name       : 'Meeting',
+      name       : '',
       startDate  : new Date().toISOString(),
       endDate    : new Date().toISOString(),
       resourceId : 1

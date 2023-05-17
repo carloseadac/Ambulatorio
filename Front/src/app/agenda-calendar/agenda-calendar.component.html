@@ -1,45 +1,18 @@
 
 <app-top-bar></app-top-bar>
 
-  <!-- <div class="row text-center">
-    <div class="col-md-4">
-      <div class="btn-group">
-        <div
-          class="btn btn-primary"
-          mwlCalendarPreviousView
-          [view]="view"
-          [(viewDate)]="viewDate"
-          (viewDateChange)="closeOpenMonthViewDay()"
-        >
-          Previous
-        </div>
-        <div
-          class="btn btn-primary"
-          mwlCalendarNextView
-          [view]="view"
-          [(viewDate)]="viewDate"
-          (viewDateChange)="closeOpenMonthViewDay()"
-        >
-          Next
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
-    </div>
-  </div>
-  <br />
-    <mwl-calendar-week-view
-      [viewDate]="viewDate"
-      [events]="events"
-      [refresh]="refresh"
-      [hourSegments]="2"
-      (eventClicked)="handleEvent('Clicked', $event.event)"
-      
-    >
-    </mwl-calendar-week-view>
-     -->
-     <button (click)="setTrue(true)"></button>
+<ng-container *ngIf="!mostrarNgContainer"> 
+  <table class="table b-table text-center table-bordered ">
+    <thead>
+      <tr>
+        <th>Data e Hora</th>
+        <th>Paciente</th>
+        <th>Desmarcar</th>
+      </tr>
+    </thead>
+  </table>
+</ng-container>
+
      <ng-container *ngIf="mostrarNgContainer">   
       <bryntum-project-model
       #project
@@ -50,7 +23,6 @@
       <ng-container *ngIf="calendarConfig.date">
           <bryntum-calendar
           #calendar
-          [features]="calendar.features"
           [eventEditFeature]="false"
           [dragFeature] = "false"
           [date] = "calendarConfig.date"
