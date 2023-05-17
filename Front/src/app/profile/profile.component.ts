@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { Shift } from '../shift';
 import { User } from '../user';
+<<<<<<< HEAD
+=======
+import { Medico } from '../medico'
+>>>>>>> 9a9edad58fd083efca913e59f8fed4381ae1dbfc
 
 @Component({
   selector: 'app-profile',
@@ -10,9 +14,16 @@ import { User } from '../user';
 })
 export class ProfileComponent implements OnInit {
 
+<<<<<<< HEAD
   medico! : User
   shift : Shift;
   startDate = ''
+=======
+  shift : Shift;
+  startDate = ''
+  medico : Medico;
+  userId : number;
+>>>>>>> 9a9edad58fd083efca913e59f8fed4381ae1dbfc
 
   constructor() { 
     this.shift = {
@@ -27,6 +38,20 @@ export class ProfileComponent implements OnInit {
       Saturday: true,
       Sunday: true
     }
+<<<<<<< HEAD
+=======
+    this.userId = 0;
+
+    this.medico = {
+      id : this.userId,
+      nome: "",
+      edv: "",
+      senha: "",
+      area: "",
+      email: "",
+      dataNasc: ""
+    }
+>>>>>>> 9a9edad58fd083efca913e59f8fed4381ae1dbfc
   }
 
   ngOnInit(): void {
@@ -70,6 +95,13 @@ export class ProfileComponent implements OnInit {
     .catch(function (error:any) {
       console.log(error);
     });
+<<<<<<< HEAD
+=======
+
+
+     
+
+>>>>>>> 9a9edad58fd083efca913e59f8fed4381ae1dbfc
   }
 
 }

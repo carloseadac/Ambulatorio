@@ -77,11 +77,19 @@ body {
 	margin-top: 15px;
 	padding: 10px;
 	border-radius: 8px;
+<<<<<<< HEAD
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
 	color: #1c1c1c;
 	box-shadow: 0 0 11px 0px #0004;
+=======
+
+	flex-wrap: wrap;
+	color: #1c1c1c;
+	box-shadow: 0 0 11px 0px #0004;
+	text-align: center;
+>>>>>>> 9a9edad58fd083efca913e59f8fed4381ae1dbfc
 }
 
 .projetos h2 {
@@ -130,6 +138,10 @@ li {
     text-align: center;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
+=======
+	margin-top: 3%;
+>>>>>>> 9a9edad58fd083efca913e59f8fed4381ae1dbfc
 
   }
 
@@ -154,3 +166,10 @@ li {
   }
 
 
+<<<<<<< HEAD
+=======
+.title2{
+	margin-top: 4%;
+	margin-bottom: 4%;
+}
+>>>>>>> 9a9edad58fd083efca913e59f8fed4381ae1dbfc
