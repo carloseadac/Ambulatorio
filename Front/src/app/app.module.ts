@@ -31,6 +31,7 @@ import { BryntumCalendarModule } from '@bryntum/calendar-angular';
 import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule, MatFormFieldDefaultOptions, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -79,8 +80,7 @@ import { MatInputModule } from '@angular/material/input';
       useFactory: adapterFactory,
     }),
     BryntumCalendarModule,
-    ReactiveFormsModule,
-    
+    ReactiveFormsModule,    
   ],
   providers: [],
   bootstrap: [AppComponent]

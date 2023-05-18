@@ -74,10 +74,8 @@ export class AgendaListComponent implements OnInit{
     };
     axios(config4)
     .then(function (response:any) {
-      console.log(JSON.stringify(response.data));
       self2.medico = response.data;
       self2.idmedico= self2.medico.id;
-      console.log(self2.idmedico)
 
       let dataNova = self2.adm.dataNasc.substring(0,10).toString();
       let day = dataNova.substring(8,10).toString();
@@ -135,9 +133,7 @@ export class AgendaListComponent implements OnInit{
     var instance = this;
     axios(config)
       .then(function (response) {
-        console.log(response.data)
         instance.agendasUser = response.data;
-        console.log(instance.agendasUser);
       })
       .catch(function (error) {
         console.log(error);
@@ -209,7 +205,6 @@ export class AgendaListComponent implements OnInit{
 
       var endsDate = new Date(dataend.value);
       endsDate.setDate(endsDate.getDate() + 1)
-      console.log("oi")
 
       // for(var c = 0; c < instance.ocorrencias.length; c++){
       //   if(instance.ocorrencias[c].id == instance.id){

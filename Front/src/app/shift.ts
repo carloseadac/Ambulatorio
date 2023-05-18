@@ -1,12 +1,13 @@
 export interface Shift {
-    Id : number,
-    startDate: string,
-    endDate: string,
-    Monday: boolean,
-    Tuesday: boolean,
-    Wednesday: boolean,
-    Thursday: boolean,
-    Friday: boolean,
-    Saturday: boolean,
-    Sunday: boolean
+    id : number,
+    startTime: string,
+    endTime: string,
+    monday: boolean,
+    tuesday: boolean,
+    wednesday: boolean,
+    thursday: boolean,
+    friday: boolean,
+    saturday: boolean,
+    sunday: boolean,
+    idMedico: number
 }

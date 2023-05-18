@@ -77,7 +77,6 @@ export class LoginComponent implements OnInit {
     .catch(function (error:any) {
       console.log(error);
       self.cont++;
-      console.log(self.cont);
     });
 
     var config3 = {
@@ -100,7 +99,6 @@ export class LoginComponent implements OnInit {
       console.log(data);
       console.log(error);
       self.cont++;
-      console.log(self.cont);
       if(self.cont == 3){
         alert("Usuário ou senha incorretos!")
         self.cont = 0;

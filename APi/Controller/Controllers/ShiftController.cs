@@ -67,9 +67,18 @@ public class ShiftController : ControllerBase
     [HttpPut]
     [Route("Approve/{id}")]
 
-    public void approveWithId(int id)
+    public void approveWithIdTrue(int id)
     {
         Model.Agenda.updateApproved(id);
+    }
+
+    [HttpPut]
+    [Route("update")]
+
+    public void approveWithId(ShiftDTO shift)
+    {
+        var id = Lib.GetIdFromRequest(Request.Headers["Authorization"].ToString());
+        Model.Shift.update(shift, id);
     }
 
     [HttpGet]

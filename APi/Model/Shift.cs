@@ -134,18 +134,46 @@ public class Shift
             context.SaveChanges();
         }
     }
-    public static void update(AgendaDTO agendaDTO, int id)
+    public static void update(ShiftDTO shiftDTO, int id)
     {
         using (var context = new Context())
         {
-            var agendas = context.Agenda.FirstOrDefault(i => i.Id == id);
-            if (agendaDTO.StartDate != null)
+            var shift = context.Shift.FirstOrDefault(i => i.Id == id);
+            if (shiftDTO.StartTime != null)
             {
-                agendas.StartDate = agendaDTO.StartDate;
+                shift.StartTime = shiftDTO.StartTime;
             }
-            if (agendaDTO.EndDate != null)
+            if (shiftDTO.EndTime != null)
             {
-                agendas.EndDate = agendaDTO.EndDate;
+                shift.StartTime = shiftDTO.StartTime;
+            }
+            if (shiftDTO.Monday != null)
+            {
+                shift.Monday = shiftDTO.Monday;
+            }
+            if (shiftDTO.Sunday != null)
+            {
+                shift.Sunday = shiftDTO.Sunday;
+            }
+            if (shiftDTO.Tuesday != null)
+            {
+                shift.Tuesday = shiftDTO.Tuesday;
+            }
+            if (shiftDTO.Wednesday != null)
+            {
+                shift.Wednesday = shiftDTO.Wednesday;
+            }
+            if (shiftDTO.Thursday!= null)
+            {
+                shift.Thursday = shiftDTO.Thursday;
+            }
+            if (shiftDTO.Friday != null)
+            {
+                shift.Friday = shiftDTO.Friday;
+            }
+            if (shiftDTO.Saturday != null)
+            {
+                shift.Saturday = shiftDTO.Friday;
             }
             context.SaveChanges();
         }

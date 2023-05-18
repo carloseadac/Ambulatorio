@@ -6,6 +6,7 @@ export interface AgendaUser{
     startDate : Date,
     endDate : Date,
     aprovado : boolean,
+    descricao : string,
     user : {
         id : number,
         nome : string,

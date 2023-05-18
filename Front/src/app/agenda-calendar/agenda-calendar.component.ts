@@ -177,27 +177,9 @@ export class AgendaCalendarComponent implements OnInit{
       axios(config)
       .then(response => {
         this.agendasUser = response.data; // Assumindo que a resposta contém os dados da agenda do usuário
-        console.log(this.agendasUser)
-        // this.agendasUser.forEach((item: AgendaUser) => {
-        //   console.log()
-        //   var i = new CalendarEventDto();
-        //   i.id = item.id;
-        //   console.log(i)
-        //   i.name = "consulta";
-        //   console.log(i)
-        //   i.startDate = item.startDate.toString();
-        //   console.log(i)
-        //   i.endDate = item.endDate.toString();
-        //   console.log(i)
-        //   instance.events.push(i);
-        // });
   
-        console.log(instance.events);
-  
-        // let events = [];
         this.eventos.pop()
         for (let k = 0; k < instance.agendasUser.length; k++) {
-          console.log(k)
           var i : {id:number,name:string, startDate: string, endDate: string, resourceId:number}={
             id: 0,
             name:'',
@@ -206,7 +188,7 @@ export class AgendaCalendarComponent implements OnInit{
             resourceId:1
           };
           i.id = this.agendasUser[k].id;
-          i.name = "Consulta "+this.agendasUser[k].user.nome;
+          i.name = `${ this.upperSobe(this.agendasUser[k].descricao)} `+this.agendasUser[k].user.nome;
           i.startDate = this.agendasUser[k].startDate.toString();
           i.endDate = this.agendasUser[k].endDate.toString();
   
@@ -267,7 +249,6 @@ export class AgendaCalendarComponent implements OnInit{
     .then(function (response:any) {
       self2.medico = response.data;
       self2.idmedico= self2.medico.id;
-      console.log(self2.idmedico);
     })
     .catch(function (error:any) {
       console.log(error);
@@ -331,7 +312,6 @@ export class AgendaCalendarComponent implements OnInit{
 
   beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
     if ( this.shiftInfo) {
-      console.log("Entrou")
       const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       let info = this.shiftInfo
         const shiftstartDate = new Date(info.startDate);
@@ -386,4 +366,7 @@ projectConfig = projectConfig;
 
 @ViewChild('calendar') calendarComponent!: BryntumCalendarComponent;
 @ViewChild('project') projectComponent!: BryntumProjectModelComponent;
+
+upperSobe(val:string){ 
+     return val.charAt(0).toUpperCase() + val.slice(1)   }
 }

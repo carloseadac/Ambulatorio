@@ -15,7 +15,7 @@ public class Context : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
 
-        optionsBuilder.UseSqlServer("Data Source=SNCCH01LAB01F18\\SQLEXPRESS;Initial Catalog=ProjetoOcorrencias; Integrated Security=True");
+        optionsBuilder.UseSqlServer("Data Source=NICHOLAS;Initial Catalog=ProjetoOcorrencias; Integrated Security=True");
 
     }
 
@@ -73,6 +73,9 @@ public class Context : DbContext
             entity.Property(a => a.DataNasc);
             entity.Property(a => a.Email);
             entity.Property(a => a.Senha);
+            entity.Property(a => a.Telefone);
+            entity.Property(a => a.Crm);
+            
 
         });
         modelBuilder.Entity<Agenda>(entity => {

@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { Shift } from '../shift';
 import { User } from '../user';
-<<<<<<< HEAD
-=======
-import { Medico } from '../medico'
->>>>>>> 9a9edad58fd083efca913e59f8fed4381ae1dbfc
+import { Medico } from '../medico';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile',
@@ -14,54 +12,31 @@ import { Medico } from '../medico'
 })
 export class ProfileComponent implements OnInit {
 
-<<<<<<< HEAD
-  medico! : User
   shift : Shift;
-  startDate = ''
-=======
-  shift : Shift;
-  startDate = ''
+  startDate = '';
+  endDate = '';
+  startTime = '';
+  endTime = '';
   medico : Medico;
   userId : number;
->>>>>>> 9a9edad58fd083efca913e59f8fed4381ae1dbfc
 
-  constructor() { 
-    this.shift = {
-      Id : 1,
-      startDate: '',
-      endDate: '',
-      Monday: true,
-      Tuesday: true,
-      Wednesday: true,
-      Thursday: true,
-      Friday: true,
-      Saturday: true,
-      Sunday: true
-    }
-<<<<<<< HEAD
-=======
+  domingo = false;
+  segunda = false;
+  terca = false;
+  quarta = false;
+  quinta = false;
+  sexta = false;
+  sabado = false;
+
+  constructor(private _snackBar: MatSnackBar) { 
     this.userId = 0;
 
-    this.medico = {
-      id : this.userId,
-      nome: "",
-      edv: "",
-      senha: "",
-      area: "",
-      email: "",
-      dataNasc: ""
-    }
->>>>>>> 9a9edad58fd083efca913e59f8fed4381ae1dbfc
   }
 
   ngOnInit(): void {
 
     let token = localStorage.getItem('authMedico');
 
-    var data = JSON.stringify({
-      
-    });
-    console.log(token)
     let self = this;
     var config2 = {
       method: 'get',
@@ -69,39 +44,107 @@ export class ProfileComponent implements OnInit {
       headers: { 
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
-      },
-      data : data
+      }
+      
     };
 
     axios(config2)
     .then(function (response:any) {
       self.shift = response.data;
-      // console.log(responseData) // Armazene a resposta em uma variável
-      // self.shift.Id = responseData[0].id;
-      // self.shift.startDate = responseData[0].startDate;
-      // self.shift.endDate = responseData[0].endDate;
-      // self.shift.Monday = responseData[0].monday;
-      // self.shift.Tuesday = responseData[0].tuesday;
-      // self.shift.Wednesday = responseData[0].wednesday;
-      // self.shift.Thursday = responseData[0].thursday;
-      // self.shift.Friday = responseData[0].friday;
-      // self.shift.Saturday = responseData[0].saturday;
-      // self.shift.Sunday = responseData[0].sunday;
-      console.log(typeof(self.shift.startDate))
-      self.startDate = self.shift.startDate
-      console.log(self.startDate)
-      console.log(self.shift)
+      self.startDate = self.shift.startTime.toString().split('T')[0]
+      self.endDate = self.shift.endTime.toString().split('T')[0]
+      self.startTime = `${self.shift.startTime.toString().split('T')[1].split(':')[0]}:${self.shift.startTime.toString().split('T')[1].split(':')[1]}`
+      self.endTime = `${self.shift.endTime.toString().split('T')[1].split(':')[0]}:${self.shift.endTime.toString().split('T')[1].split(':')[1]}`
+      self.endTime = self.shift.endTime.toString().split('T')[1]
+      self.domingo = self.shift.sunday
+
+      let st = (document.getElementById("start") as HTMLInputElement).value = self.startDate
+      let end = (document.getElementById("end") as HTMLInputElement).value = self.endDate
+      let stt= (document.getElementById("timestart") as HTMLInputElement).value = self.startTime
+      let endt= (document.getElementById("timeend") as HTMLInputElement).value = self.endTime
+
+      let domingo = (document.getElementById("domingo") as HTMLInputElement).checked = self.shift.sunday
+      let segunda = (document.getElementById("segunda") as HTMLInputElement).checked = self.shift.monday
+      let terca = (document.getElementById("terca") as HTMLInputElement).checked = self.shift.tuesday
+      let quarta = (document.getElementById("quarta") as HTMLInputElement).checked = self.shift.wednesday
+      let quinta = (document.getElementById("quinta") as HTMLInputElement).checked = self.shift.thursday
+      let sexta = (document.getElementById("sexta") as HTMLInputElement).checked = self.shift.friday
+      let sabado = (document.getElementById("sabado") as HTMLInputElement).checked = self.shift.saturday
+
     })
     .catch(function (error:any) {
       console.log(error);
     });
-<<<<<<< HEAD
-=======
 
+    var config = {
+      method: 'get',
+      url: 'http://localhost:5051/Medico/getById',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    };
 
-     
+    axios(config)
+    .then(function (response:any) {
+      self.medico = response.data;
+      self.medico.dataNasc = new Date(self.medico.dataNasc).toLocaleDateString()
 
->>>>>>> 9a9edad58fd083efca913e59f8fed4381ae1dbfc
+    })
+    .catch(function (error:any) {
+      console.log(error);
+    });
   }
 
+  saveShift(){
+    let dataEntrada = document.getElementById("start") as HTMLInputElement;
+    let dataSaida =document.getElementById("end") as HTMLInputElement;
+    let horaEntrada= document.getElementById("timestart") as HTMLInputElement;
+    let horaSaida= document.getElementById("timeend") as HTMLInputElement;
+    let domingo  = (document.getElementById("domingo") as HTMLInputElement).checked;
+    let segunda  = (document.getElementById("segunda") as HTMLInputElement).checked;
+    let terca  = (document.getElementById("terca") as HTMLInputElement).checked;
+    let quarta  = (document.getElementById("quarta") as HTMLInputElement).checked;
+    let quinta  = (document.getElementById("quinta") as HTMLInputElement).checked;
+    let sexta  = (document.getElementById("sexta") as HTMLInputElement).checked;
+    let sabado  = (document.getElementById("sabado") as HTMLInputElement).checked;
+
+    var data = JSON.stringify({
+      "StartTime": dataEntrada?.value + "T" + horaEntrada.value+":00",
+      "EndTime": dataSaida?.value + "T" + horaSaida.value+":00",
+      "MedicoId":this.medico.id,
+      "Sunday": domingo,
+      "Monday": segunda,
+      "Tuesday": terca,
+      "Wednesday": quarta,
+      "Thursday": quinta,
+      "Friday": sexta,
+      "Saturday": sabado,
+    })
+
+    if(this.medico.id){
+      var config = {
+        method: 'put',
+        url: 'http://localhost:5051/Shift/update',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('authMedico')
+        },
+        data : data
+      };
+  
+      axios(config)
+      .then(function (response:any) {
+        alert("Agenda atualizada!")
+          
+  
+      })
+      .catch(function (error:any) {
+        console.log(error);
+      });
+    }
+    
+    
+
+  }
 }

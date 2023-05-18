@@ -12,6 +12,8 @@ public class Medico
     public DateTime DataNasc { get; set; }
     public string Email { get; set; }
     public string Senha { get; set; }
+    public string Crm { get; set; }
+    public string Telefone { get; set; }
 
     public int save()
     {
@@ -28,6 +30,8 @@ public class Medico
                 Area = this.Area,
                 DataNasc = this.DataNasc,
                 Email = this.Email,
+                Telefone = this.Telefone,
+                Crm = this.Crm,
 
             };
             context.Medico.Add(medico);
@@ -50,6 +54,8 @@ public class Medico
                 Area = medicos.Area,
                 DataNasc = medicos.DataNasc,
                 Email = medicos.Email,
+                Telefone = medicos.Telefone,
+                Crm = medicos.Crm,
             };
         }
     }
@@ -59,15 +65,17 @@ public class Medico
         using (var context = new Context())
         {
             var medicos = context.Medico.FirstOrDefault(d => d.Id == id);
+            Console.WriteLine(medicos.Telefone);
             return new
             {
-                Nome = medicos.Nome,
-                Edv = medicos.Edv,
-                Senha = medicos.Senha,
-                Area = medicos.Area,
-                DataNasc = medicos.DataNasc,
-                Email = medicos.Email,
-                Id = id
+                nome = medicos.Nome,
+                edv = medicos.Edv,
+                area = medicos.Area,
+                dataNasc = medicos.DataNasc,
+                email = medicos.Email,
+                crm = medicos.Crm,
+                telefone = medicos.Telefone,
+                id = id
             };
         }
     }

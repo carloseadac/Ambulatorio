@@ -37,7 +37,6 @@ export class HomeAdminComponent implements OnInit {
     var data = JSON.stringify({
       
     });
-    console.log(token)
     let self = this;
     var config2 = {
       method: 'get',
@@ -51,7 +50,6 @@ export class HomeAdminComponent implements OnInit {
 
     axios(config2)
     .then(function (response:any) {
-      console.log(JSON.stringify(response.data));
       self.userId = response.data;
       self.user = response.data
     })
