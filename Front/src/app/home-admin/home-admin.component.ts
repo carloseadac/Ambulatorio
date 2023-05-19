@@ -16,18 +16,6 @@ export class HomeAdminComponent implements OnInit {
   
   constructor(private router: Router) {
     let self = this;
-
-    this.userId = 0;
-
-    this.user = {
-      id : this.userId,
-      nome : "",
-      edv: "",
-      senha: "",
-      area: "",
-      email: "",
-      dataNasc: ""
-    }
    }
 
   ngOnInit(): void {

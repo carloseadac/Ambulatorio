@@ -50,13 +50,14 @@ export class ProfileComponent implements OnInit {
     axios(config2)
     .then(function (response:any) {
       self.shift = response.data;
+      
       self.startDate = self.shift.startTime.toString().split('T')[0]
       self.endDate = self.shift.endTime.toString().split('T')[0]
       self.startTime = `${self.shift.startTime.toString().split('T')[1].split(':')[0]}:${self.shift.startTime.toString().split('T')[1].split(':')[1]}`
       self.endTime = `${self.shift.endTime.toString().split('T')[1].split(':')[0]}:${self.shift.endTime.toString().split('T')[1].split(':')[1]}`
       self.endTime = self.shift.endTime.toString().split('T')[1]
       self.domingo = self.shift.sunday
-
+      console.log(self.startDate)
       let st = (document.getElementById("start") as HTMLInputElement).value = self.startDate
       let end = (document.getElementById("end") as HTMLInputElement).value = self.endDate
       let stt= (document.getElementById("timestart") as HTMLInputElement).value = self.startTime
@@ -111,7 +112,7 @@ export class ProfileComponent implements OnInit {
     var data = JSON.stringify({
       "StartTime": dataEntrada?.value + "T" + horaEntrada.value+":00",
       "EndTime": dataSaida?.value + "T" + horaSaida.value+":00",
-      "MedicoId":this.medico.id,
+      "IdMedico":this.medico.id,
       "Sunday": domingo,
       "Monday": segunda,
       "Tuesday": terca,
@@ -120,8 +121,8 @@ export class ProfileComponent implements OnInit {
       "Friday": sexta,
       "Saturday": sabado,
     })
-
-    if(this.medico.id){
+    console.log(this.startDate)
+    if(this.shift){
       var config = {
         method: 'put',
         url: 'http://localhost:5051/Shift/update',
@@ -135,6 +136,25 @@ export class ProfileComponent implements OnInit {
       axios(config)
       .then(function (response:any) {
         alert("Agenda atualizada!")
+      })
+      .catch(function (error:any) {
+        console.log(error);
+      });
+    }
+    else{
+      var config1 = {
+        method: 'post',
+        url: 'http://localhost:5051/Shift/register',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('authMedico')
+        },
+        data : data
+      };
+  
+      axios(config1)
+      .then(function (response:any) {
+        alert("Agenda criada!")
       })
       .catch(function (error:any) {
         console.log(error);

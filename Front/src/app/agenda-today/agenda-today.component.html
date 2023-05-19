@@ -1,4 +1,5 @@
-<table class="table b-table text-center table-bordered ">
+
+<table class="table b-table text-center table-stripped ">
     <thead>
       <tr>
         <th>Data e Hora</th>
@@ -10,6 +11,7 @@
       <tr *ngFor="let agenda of eventsToday; let i = index">
         <td [innerHTML]="agenda.horario"></td>
         <td>{{agenda.paciente}}</td>
+        <td><button class="btn btn-light" (click)="delete(agenda.id)" >Desmarcar</button></td>
       </tr>
     </tbody>
   </table>

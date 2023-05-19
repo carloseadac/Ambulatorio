@@ -1,3 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /* angular-cli file: src/styles.css */
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+* {
+    font-family: "Space Grotesk", sans-serif;
+  }

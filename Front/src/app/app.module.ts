@@ -33,6 +33,7 @@ import {MatFormFieldModule, MatFormFieldDefaultOptions, MAT_FORM_FIELD_DEFAULT_O
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AgendaTodayComponent } from './agenda-today/agenda-today.component';
+import { RegisterDoctorComponent } from './register-doctor/register-doctor.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AgendaTodayComponent } from './agenda-today/agenda-today.component';
     ConsultasListComponent,
     ProfileComponent,
     AgendaCalendarComponent,
-    AgendaTodayComponent
+    AgendaTodayComponent,
+    RegisterDoctorComponent
     
   ],
   imports: [
@@ -71,7 +73,8 @@ import { AgendaTodayComponent } from './agenda-today/agenda-today.component';
       {path: 'homeAdmin', component: HomeAdminComponent},
       {path: 'consultaslist', component: ConsultasListComponent},
       {path: 'profile', component: ProfileComponent},
-      {path: 'agendacalendar', component: AgendaCalendarComponent}
+      {path: 'agendacalendar', component: AgendaCalendarComponent},
+      {path: 'registerdoc', component: RegisterDoctorComponent}
     ]),
     CommonModule,
     FormsModule,

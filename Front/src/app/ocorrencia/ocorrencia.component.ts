@@ -278,7 +278,8 @@ export class OcorrenciaComponent implements OnInit {
         method: 'post',
         url: 'http://localhost:5051/Ocorrencia/registrar',
         headers: { 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('authToken')
         },
         data : data2
       };
@@ -289,7 +290,6 @@ export class OcorrenciaComponent implements OnInit {
       })
       .catch(function (error) {
         console.log(data2)
-        alert("Erro Genérico!");
         console.log(error);
       });
 
@@ -426,7 +426,6 @@ export class OcorrenciaComponent implements OnInit {
     })
     .catch(function (error) {
       console.log(data)
-      alert("Erro Genérico!");
       console.log(error);
     }); 
   }

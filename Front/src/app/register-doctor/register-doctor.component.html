@@ -1,7 +1,7 @@
 <app-top-bar></app-top-bar>
 
 <!-- <div class="titleRegister">
-    <h1>Registrar novo ADM</h1>
+    <h1>Registrar novo usuário</h1>
 
 </div>
 
@@ -38,11 +38,10 @@
         <div  class="btnAddress2"><button class="btn" type="button" (click)="save()" >Cadastrar</button></div>
     </div>
 </div> -->
-
 <div class="back">
     <form action="" class="login-box" autocomplete="on">
         <div class="title">
-            <h1>CADASTRAR ADM</h1>
+            <h1>CADASTRAR MEDICO</h1>
         </div>
         <div class="input-box">
             <input type="text" name="" required class="input" id="nome" placeholder="Nome">
@@ -57,10 +56,16 @@
             <input type="text" name="" required class="input" id="area" placeholder="Área">
         </div>
         <div class="input-box">
-            <input type="text" class="input"  placeholder="Data de Nascimento"  onfocus="(this.type='date')">
+            <input type="text" class="input"  placeholder="Data de Nascimento" id="date"  onfocus="(this.type='date')">
+        </div>
+        <div class="input-box">
+            <input type="text" name="" required class="input" id="crm" placeholder="CRM">
+        </div>
+        <div class="input-box">
+            <input type="text" name="" required class="input" id="telefone" placeholder="Telefone">
         </div>
         <div class="buttons-adm">
-            <button type="submit" (click)="save()">Entrar</button>
+            <button type="submit" (click)="save()">Cadastrar</button>
             <button type="submit">Cancelar</button>
         </div>
     </form>

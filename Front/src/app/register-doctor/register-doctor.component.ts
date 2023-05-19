@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
-import axios from "axios";
-
+import { Router } from '@angular/router';
+import axios from 'axios';
 
 @Component({
-  selector: 'app-register-user',
-  templateUrl: './register-user.component.html',
-  styleUrls: ['./register-user.component.css']
+  selector: 'app-register-doctor',
+  templateUrl: './register-doctor.component.html',
+  styleUrls: ['./register-doctor.component.css']
 })
-export class RegisterUserComponent implements OnInit {
+export class RegisterDoctorComponent implements OnInit {
 
   constructor(private router: Router) { }
 
@@ -30,6 +29,8 @@ export class RegisterUserComponent implements OnInit {
     let email = document.getElementById("email") as HTMLInputElement;
     let area = document.getElementById("area") as HTMLInputElement;
     let date = document.getElementById("date") as HTMLInputElement;
+    let crm = document.getElementById("crm") as HTMLInputElement;
+    let telefone = document.getElementById("telefone") as HTMLInputElement;
 
     let dataNova = date?.value.substring(0,10).toString();
     let day = dataNova.substring(8,10).toString();
@@ -43,13 +44,15 @@ export class RegisterUserComponent implements OnInit {
       "email" : email?.value,
       "area" : area?.value,
       "dataNasc" : date?.value,
-      "senha" : dataCerta
+      "senha" : dataCerta,
+      "crm": crm.value,
+      "telefone" : telefone.value
     })
 
     let self = this;
     var config = {
       method: 'post',
-      url: 'http://localhost:5051/user/register',
+      url: 'http://localhost:5051/medico/register',
       headers: { 
         'Content-Type': 'application/json'
        },
@@ -68,4 +71,5 @@ export class RegisterUserComponent implements OnInit {
     });
 
   }
+
 }
