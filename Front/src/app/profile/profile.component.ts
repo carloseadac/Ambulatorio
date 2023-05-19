@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Shift } from '../shift';
 import { User } from '../user';
 import { Medico } from '../medico';
-import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile',
@@ -28,7 +27,7 @@ export class ProfileComponent implements OnInit {
   sexta = false;
   sabado = false;
 
-  constructor(private _snackBar: MatSnackBar) { 
+  constructor() { 
     this.userId = 0;
 
   }
@@ -136,8 +135,6 @@ export class ProfileComponent implements OnInit {
       axios(config)
       .then(function (response:any) {
         alert("Agenda atualizada!")
-          
-  
       })
       .catch(function (error:any) {
         console.log(error);

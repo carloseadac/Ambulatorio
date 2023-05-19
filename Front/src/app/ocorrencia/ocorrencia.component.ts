@@ -268,12 +268,9 @@ export class OcorrenciaComponent implements OnInit {
       console.log(data)
       axios(config1)
       .then(function (response) {
-        alert("Registrado com sucesso!");
-        
+        alert("Consulta marcada com sucesso!");
       })
       .catch(function (error) {
-        
-        alert("Erro Genérico!");
         console.log(error);
       });
       console.log(data2)
@@ -288,7 +285,6 @@ export class OcorrenciaComponent implements OnInit {
       let self4 = this;
       axios(config)
       .then(function (response) {
-        alert("Registrado com sucesso!");
         
       })
       .catch(function (error) {
@@ -345,16 +341,17 @@ export class OcorrenciaComponent implements OnInit {
             "senha": ""
           }
         })
-        var config = {
+        var configsave = {
           method: 'post',
-          url: 'http://localhost:5051/Ocorrencia/register',
+          url: 'http://localhost:5051/Ocorrencia/registrar',
           headers: { 
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('authToken')
           },
           data : data
         };
         let self4 = this;
-        axios(config)
+        axios(configsave)
         .then(function (response) {
           alert("Registrado com sucesso!");
           

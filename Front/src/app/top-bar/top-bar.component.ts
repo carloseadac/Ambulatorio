@@ -27,7 +27,8 @@ export class TopBarComponent implements OnInit {
   }
 
   setTrue(truee: boolean){
-    this.mostrarNgContainer= true
+    this.mostrarNgContainer ? this.mostrarNgContainer = false : this.mostrarNgContainer = true
+    console.log(this.mostrarNgContainer)
   }
 
   sair(){

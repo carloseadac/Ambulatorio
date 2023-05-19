@@ -11,3 +11,9 @@
     width  : 100%;
     height : 100%;
 }
+
+.botao{
+    position: absolute;
+    top:20px;
+    right: 100px;
+}

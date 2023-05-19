@@ -20,6 +20,7 @@ public class Ocorrencia
         using(var context = new Model.Context()){
             var ocorrencias = context.Ocorrencias.FirstOrDefault(o => o.Id == ocorrenciaId);
             var usuario = context.User.FirstOrDefault(o => o.Id == userId);
+            context.Entry(usuario).State = EntityState.Unchanged;
             var obj = new Model.Ocorrencia{
                 Descricao = ocorrencia.Descricao,
                 DataEntrada = ocorrencia.DataEntrada,

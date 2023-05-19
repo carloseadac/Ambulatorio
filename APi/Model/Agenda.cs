@@ -87,6 +87,23 @@ public class Agenda
         }
     }
 
+    public IList<AgendaTodayDTO> findToday(int id)
+    {
+        using (var context = new Context())
+        {
+            var agenda = context.Agenda.Include(p => p.User).Include(p => p.Medico).Where(c => c.Medico.Id == id && c.StartDate > DateTime.Today.Date)
+                .Select(c => new AgendaTodayDTO
+                {
+                    Id = c.Id,
+                    Horario = c.StartDate.Hour.ToString() + ":" + (c.StartDate.Minute == 0 ? c.StartDate.Minute.ToString()+"0" : c.StartDate.Minute.ToString()),
+                    Paciente = c.User.Nome.ToString(),
+                })
+                .ToList();
+
+            return agenda;
+        }
+    }
+
     public static void delete(int id)
     {
         using (var context = new Context())

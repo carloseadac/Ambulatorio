@@ -45,7 +45,8 @@ public class OcorrenciaController : ControllerBase
     [HttpPost]
     [Route("registrar")]
     public object OccurrenceRegister([FromBody] OcorrenciaDTO ocorrencia){
-        var Id = new Ocorrencia().save(ocorrencia.UsuarioId, ocorrencia.Ocorrencias.Id, ocorrencia);
+        var iduser = Lib.GetIdFromRequest(Request.Headers["Authorization"].ToString());
+        var Id = new Ocorrencia().save(iduser, ocorrencia.Ocorrencias.Id, ocorrencia);
         return new{
             Id = Id,
             Descricao = ocorrencia.Descricao,

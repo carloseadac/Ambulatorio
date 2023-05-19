@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { OcorrenciasUser } from '../ocorrenciasUser';
 import { Ocorrencias } from '../ocorrencias';
 import axios from 'axios';
@@ -15,16 +15,6 @@ import {
   ViewChild,
   TemplateRef,
 } from '@angular/core';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours,
-} from 'date-fns';
 import { Observable, Subject, map } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
@@ -39,6 +29,7 @@ import { CalendarEventDto } from '../CalendarEventDto';
 import { shiftsDto } from '../shiftDto';
 import { end, start } from '@popperjs/core';
 import { Calendar } from '@bryntum/calendar';
+import { AgendaToday } from '../agendaToday';
 
 const colors: Record<string, EventColor> = {
   blue: {
@@ -54,7 +45,7 @@ const colors: Record<string, EventColor> = {
   styleUrls : ['./agenda-calendar.component.css','../build/calendar.classic-light.css'],
   encapsulation : ViewEncapsulation.None
 })
-export class AgendaCalendarComponent implements OnInit{
+export class AgendaCalendarComponent implements OnInit, AfterViewInit{
 
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any> | undefined;
 
@@ -83,48 +74,10 @@ export class AgendaCalendarComponent implements OnInit{
   events: CalendarEventDto[]=[];
   events$: Observable<CalendarEvent<{ calendar: CalendarEventDto; }>[]> | undefined
 
-  refresh = new Subject<void>();
+  eventsToday: AgendaToday[];
+  startDates: Date[]
 
-  // events: CalendarEvent[] = [
-  //   {
-  //     start: subDays(startOfDay(new Date()), 1),
-  //     end: addDays(new Date(), 1),
-  //     title: 'A 3 day event',
-  //     color: { ...colors['blue'] },
-  //     actions: this.actions,
-  //     allDay: true,
-  //     resizable: {
-  //       beforeStart: true,
-  //       afterEnd: true,
-  //     },
-  //     draggable: true,
-  //   },
-  //   {
-  //     start: startOfDay(new Date()),
-  //     title: 'An event with no end date',
-  //     color: { ...colors['blue'] },
-  //     actions: this.actions,
-  //   },
-  //   {
-  //     start: subDays(endOfMonth(new Date()), 3),
-  //     end: addDays(endOfMonth(new Date()), 3),
-  //     title: 'A long event that spans 2 months',
-  //     color: { ...colors['blue'] },
-  //     allDay: true,
-  //   },
-  //   {
-  //     start: addHours(startOfDay(new Date()), 2),
-  //     end: addHours(new Date(), 2),
-  //     title: 'A draggable and resizable event',
-  //     color: { ...colors['blue'] },
-  //     actions: this.actions,
-  //     resizable: {
-  //       beforeStart: true,
-  //       afterEnd: true,
-  //     },
-  //     draggable: true,
-  //   },
-  // ];
+  refresh = new Subject<void>();
 
    calendar = new Calendar({
     features:{
@@ -200,7 +153,6 @@ export class AgendaCalendarComponent implements OnInit{
           .catch(function (error) {
             instance.events = error
           });
-      this.todos();
     }
 
     alertNatela($event: Event){
@@ -218,17 +170,37 @@ export class AgendaCalendarComponent implements OnInit{
   medico : User
   idmedico: number = 0;
 
+  mostrarCalendario = false
+
   ngOnInit(): void {
+    var config3 = {
+      method: 'get',
+      url: 'http://localhost:5051/Agenda/getToday',
+      headers: { 
+        'Authorization': 'Bearer ' + localStorage.getItem('authMedico')
+      },
+    };
+    axios(config3)
+    .then(function (response:any) {
+      self2.eventsToday = response.data;
+      console.log(self2.eventsToday)
+      console.log(self2.startDates)
+      
+    })
+    .catch(function (error:any) {
+      console.log(error);
+    });
+
     let self = this;
-    // if(localStorage.getItem("authOwner") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authMedico") == null ){
-    //   self.router.navigate(["/"])
-    // }
-    // if(localStorage.getItem("authToken") != null){
-    //   self.router.navigate(["/"])
-    // }
-    // if(localStorage.getItem("authMedico") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authOwner") == null){
-    //   self.router.navigate(["/"])
-    // }
+    if(localStorage.getItem("authOwner") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authMedico") == null ){
+      self.router.navigate(["/"])
+    }
+    if(localStorage.getItem("authToken") != null){
+      self.router.navigate(["/"])
+    }
+    if(localStorage.getItem("authMedico") == null && localStorage.getItem("authToken") == null && localStorage.getItem("authOwner") == null){
+      self.router.navigate(["/"])
+    }
 
     var data3 = JSON.stringify({
       
@@ -255,34 +227,21 @@ export class AgendaCalendarComponent implements OnInit{
     });
 
     this.initialize();
-    setTimeout(() => {
-      this.setTrue(true)
-    }, 2000);
   }
 
+  showCalendar(){
+    this.mostrarCalendario=true
+  }
+  ngAfterViewInit(): void {
+    this.showCalendar()
+  }
+  
   setTrue(truee: boolean){
-    this.mostrarNgContainer= true
+    this.mostrarNgContainer ? this.mostrarNgContainer = false : this.mostrarNgContainer = true
+    console.log(this.mostrarNgContainer)
   }
 
   async initialize() {
-    this.todos();
-  }
-
-  todos(){
-      var config1 = {
-        method: 'get',
-        url: 'http://localhost:5051/Shift/getAll/',
-        headers: {'Authorization': 'Bearer ' + localStorage.getItem('authMedico')},
-        data: '',
-      };
-      var instance = this;
-      axios(config1)
-        .then(function (response) {
-          instance.shiftInfo = response.data
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
   }
 
   pegaId(id : number){
@@ -309,39 +268,6 @@ export class AgendaCalendarComponent implements OnInit{
   reset(){
     this.initialize();
   }
-
-  beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
-    if ( this.shiftInfo) {
-      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      let info = this.shiftInfo
-        const shiftstartDate = new Date(info.startDate);
-        const shiftEndDate = info.EndDate ? new Date (info.EndDate!) : null;
-        shiftstartDate.setHours(0, 0, 0, 0);
-        shiftEndDate?.setHours(0, 0, 0, 0);
-
-        renderEvent.hourColumns.forEach((hourColumn) => {
-          const calendarColumnDate = new Date (hourColumn.date);
-          const dayOfWeek = days[ calendarColumnDate.getDay() ];
-
-            if(calendarColumnDate >= shiftstartDate &&
-              (shiftEndDate === null || calendarColumnDate <= shiftEndDate) && 
-              (dayOfWeek === "Sunday" && info.Sunday ||
-              dayOfWeek === "Monday" && info.Monday ||
-              dayOfWeek === "Tuesday" && info.Tuesday ||
-              dayOfWeek === "Wednesday" && info.Wednesday ||
-              dayOfWeek === "Thursday" && info.Thursday ||
-              dayOfWeek === "Friday" && info.Friday ||
-              dayOfWeek === "Saturday" && info.Saturday)){
-                hourColumn.hours.forEach((hour) => {
-                hour.segments.forEach((segment) => {
-                segment.cssClass = 'bg-green';
-                });
-              })
-
-            }
-      });
-  }
-}
 resources = [
   {
       id         : 1,

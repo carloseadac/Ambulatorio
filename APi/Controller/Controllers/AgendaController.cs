@@ -65,6 +65,16 @@ public class AgendaController : ControllerBase
         return agendas;
     }
 
+    [HttpGet]
+    [Route("getToday")]
+
+    public IList<AgendaTodayDTO> getAllToday()
+    {
+        var id = Lib.GetIdFromRequest(Request.Headers["Authorization"].ToString());
+        var agendas = new Agenda().findToday(id);
+        return agendas;
+    }
+
     [HttpPut]
     [Route("Approve/{id}")]
 

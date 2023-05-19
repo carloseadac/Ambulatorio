@@ -1,16 +1,9 @@
 
 <app-top-bar></app-top-bar>
-
+<h1 *ngIf="!mostrarNgContainer" class="text-center">Consultas do dia</h1>
+<button class="botao" (click)="setTrue(true)">Mostrar calendario</button>
 <ng-container *ngIf="!mostrarNgContainer"> 
-  <table class="table b-table text-center table-bordered ">
-    <thead>
-      <tr>
-        <th>Data e Hora</th>
-        <th>Paciente</th>
-        <th>Desmarcar</th>
-      </tr>
-    </thead>
-  </table>
+  <app-agenda-today [eventsToday]="eventsToday"></app-agenda-today>
 </ng-container>
 
      <ng-container *ngIf="mostrarNgContainer">   

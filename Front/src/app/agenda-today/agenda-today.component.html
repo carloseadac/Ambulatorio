@@ -1,0 +1,15 @@
+<table class="table b-table text-center table-bordered ">
+    <thead>
+      <tr>
+        <th>Data e Hora</th>
+        <th>Paciente</th>
+        <th>Desmarcar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agenda of eventsToday; let i = index">
+        <td [innerHTML]="agenda.horario"></td>
+        <td>{{agenda.paciente}}</td>
+      </tr>
+    </tbody>
+  </table>

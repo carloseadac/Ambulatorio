@@ -32,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule, MatFormFieldDefaultOptions, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AgendaTodayComponent } from './agenda-today/agenda-today.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     HomeAdminComponent,
     ConsultasListComponent,
     ProfileComponent,
-    AgendaCalendarComponent
+    AgendaCalendarComponent,
+    AgendaTodayComponent
     
   ],
   imports: [
