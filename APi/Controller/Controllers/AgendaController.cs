@@ -83,5 +83,13 @@ public class AgendaController : ControllerBase
         Model.Agenda.updateApproved(id);
     }
 
+    [HttpDelete]
+    [Route("Delete/{id}")]
+
+    public void deleteWithId(int id)
+    {
+        Model.Agenda.delete(id);
+    }
+
 
 }

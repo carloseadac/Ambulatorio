@@ -64,7 +64,7 @@ public class Shift
     public List<TimeSpan> findAvailableTimes(int idMedico, DateTime data) { 
         using (var context = new Context())
         {
-            var consultas = context.Agenda.Where(x => x.StartDate > data.Date && x.EndDate < data.AddDays(1) && x.MedicoId == idMedico).ToList();
+            var consultas = context.Agenda.Where(x => x.StartDate > data.Date && x.EndDate < data.AddDays(1) && x.MedicoId == idMedico).OrderBy(t => t.StartDate).ToList();
             Console.WriteLine(consultas);
             var shift = context.Shift.Where(c => c.Medico.Id == idMedico).FirstOrDefault();
             TimeSpan startHour = new TimeSpan(shift.StartTime.Hour, shift.StartTime.Minute,0);
@@ -88,16 +88,26 @@ public class Shift
                     {
                         foreach (Agenda consulta in consultas)
                         {
-                            if (time >= consulta.StartDate.TimeOfDay && time <= consulta.EndDate.TimeOfDay ||
-                                time +increment >= consulta.StartDate.TimeOfDay && time + increment <= consulta.EndDate.TimeOfDay)
+                            if (time >= consulta.StartDate.TimeOfDay && time < consulta.EndDate.TimeOfDay)
                             {
-
+                                
+                                if (availableTimes.Contains(time))
+                                {
+                                   availableTimes.RemoveAll(x => x == time);
+                                   
+                                }
+                                
                             }
                             else
                             {
                                 availableTimes.Add(time);
                             }
+                            if(consultas.Any(e => e.StartDate.TimeOfDay == time))
+                            {
+                                availableTimes.RemoveAll(x => x == time);
+                            }
                         }
+                        
                     }
                     else
                     {
@@ -109,7 +119,7 @@ public class Shift
             }
             
 
-            return availableTimes;
+            return availableTimes.Distinct().ToList();
         }
         
     }

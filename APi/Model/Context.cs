@@ -15,7 +15,7 @@ public class Context : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
 
-        optionsBuilder.UseSqlServer("Data Source=NICHOLAS;Initial Catalog=ProjetoOcorrencias; Integrated Security=True");
+        optionsBuilder.UseSqlServer("Data Source=CT-C-000FC\\SQLEXPRESS;Initial Catalog=ProjetoOcorrencias; Integrated Security=True");
 
     }
 
